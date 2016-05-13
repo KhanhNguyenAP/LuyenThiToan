@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="md_blue_100">#448AFF</color>
+    <color name="md_blue_500">#2196F3</color>
+    <color name="md_blue_700">#1976D2</color>
+    <color name="md_indigo_700">#303f9f</color>
+    <color name="md_indigo_500_25">#403f51b5</color>
+    <color name="md_pink_500">#e91e63</color>
+    <color name="md_white">#ffffff</color>
+    <color name="md_red">#D50000</color>
+    <color name="bg_black">#000000</color>
+</resources>
