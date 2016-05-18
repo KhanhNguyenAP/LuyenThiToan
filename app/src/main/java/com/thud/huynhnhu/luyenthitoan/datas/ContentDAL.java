@@ -49,6 +49,10 @@ public class ContentDAL {
                                 ob.getString(""+Content.TOPICID));
                         arr_ConTent.add(content);
                     }
+
+                    if (arr_ConTent.size() > 0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_ConTent);
+                    }
                 }
             }
         });

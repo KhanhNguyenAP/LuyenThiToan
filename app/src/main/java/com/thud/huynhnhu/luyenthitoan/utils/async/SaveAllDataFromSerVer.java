@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.PowerManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ import com.thud.huynhnhu.luyenthitoan.datas.ContentDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
-import com.thud.huynhnhu.luyenthitoan.model.AllDAL;
+import com.thud.huynhnhu.luyenthitoan.datas.AllDAL;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
@@ -25,7 +24,6 @@ import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import com.thud.huynhnhu.luyenthitoan.utils.Preference;
 import com.thud.huynhnhu.luyenthitoan.utils.dialogs.ToastMessage;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
-import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
@@ -147,15 +145,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getContent(){
         try {
             Result<ArrayList<Content>> resultContent = new ContentDAL(context).getAllContent();
-            if (resultContent.getKey() == ResultStatus.TRUE &&
-                    resultContent.getValue() != null &&
-                    resultContent.getValue().size() > 0){
-                ArrayList<Content> contents = resultContent.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(contents);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -168,14 +157,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getExam(){
         try {
             Result<ArrayList<Exam>> resultExam = new ExamDAL(context).getAllExam();
-            if (resultExam.getKey() == ResultStatus.TRUE &&
-                    resultExam.getValue() != null &&
-                    resultExam.getValue().size() > 0){
-                ArrayList<Exam> exams = resultExam.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(exams);
-                Log.i(Def.INFO, result.getMessage());
-            }
             return true;
         }
         catch (Exception e){
@@ -188,15 +169,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getExample(){
         try {
             Result<ArrayList<Example>> resultExample = new ExampleDAL(context).getAllExample();
-            if (resultExample.getKey() == ResultStatus.TRUE &&
-                    resultExample.getValue() != null &&
-                    resultExample.getValue().size() > 0){
-                ArrayList<Example> examples = resultExample.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(examples);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -209,15 +181,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getTopic(){
         try {
             Result<ArrayList<Topic>> resultTopic = new TopicDAL(context).getAllTopic();
-            if (resultTopic.getKey() == ResultStatus.TRUE &&
-                    resultTopic.getValue() != null &&
-                    resultTopic.getValue().size() > 0){
-                ArrayList<Topic> topics = resultTopic.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(topics);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){

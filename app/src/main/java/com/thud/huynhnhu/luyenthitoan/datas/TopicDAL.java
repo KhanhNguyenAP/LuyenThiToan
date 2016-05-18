@@ -52,6 +52,10 @@ public class TopicDAL {
                                 ob.getParseFile(""+Topic.IMAGE));
                         arr_Topic.add(topic);
                     }
+
+                    if (arr_Topic.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_Topic);
+                    }
                 }
             }
         });

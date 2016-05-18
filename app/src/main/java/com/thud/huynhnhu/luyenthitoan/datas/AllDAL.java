@@ -1,4 +1,4 @@
-package com.thud.huynhnhu.luyenthitoan.model;
+package com.thud.huynhnhu.luyenthitoan.datas;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +9,12 @@ import com.thud.huynhnhu.luyenthitoan.datas.DBHelper;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
+import com.thud.huynhnhu.luyenthitoan.model.Content;
+import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.Example;
+import com.thud.huynhnhu.luyenthitoan.model.Result;
+import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
+import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
 
 import java.util.ArrayList;
@@ -38,17 +44,17 @@ public class AllDAL {
             if (((ArrayList) object[0]).size() >0){
                 Object firstObject = ((ArrayList) object[0]).get(0);
                 //with content
-                if (firstObject != null && firstObject instanceof  Content){
+                if (firstObject != null && firstObject instanceof Content){
                     ArrayList<Content> contents = ((ArrayList) object[0]);
                     result = new ContentDAL(context).insertContentFromLocal(contents);
                 }
                 else {
-                    if (firstObject != null && firstObject instanceof  Exam){
+                    if (firstObject != null && firstObject instanceof Exam){
                         ArrayList<Exam> exams = ((ArrayList) object[0]);
                         return result = new ExamDAL(context).insertExamFromLocal(exams);
                     }
                     else {
-                        if(firstObject != null && firstObject instanceof  Example){
+                        if(firstObject != null && firstObject instanceof Example){
                             ArrayList<Example> examples = ((ArrayList) object[0]);
                             result = new ExampleDAL(context).insertExampleFromLocal(examples);
                         }

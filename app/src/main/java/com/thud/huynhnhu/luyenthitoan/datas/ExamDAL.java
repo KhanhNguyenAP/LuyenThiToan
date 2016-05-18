@@ -51,6 +51,10 @@ public class ExamDAL {
                                 ob.getString(""+Exam.ANSWER));
                         arr_Exam.add(exam);
                     }
+
+                    if (arr_Exam.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_Exam);
+                    }
                 }
             }
         });

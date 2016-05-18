@@ -50,6 +50,10 @@ public class ExampleDAL {
                                 ob.getString(""+Example.ANSWER));
                         arr_Example.add(example);
                     }
+
+                    if (arr_Example.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_Example);
+                    }
                 }
             }
         });
