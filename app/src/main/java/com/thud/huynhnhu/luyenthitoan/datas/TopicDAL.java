@@ -2,6 +2,7 @@ package com.thud.huynhnhu.luyenthitoan.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -91,5 +92,29 @@ public class TopicDAL {
 
         return new Result<String>(ResultStatus.FALSE, null);
     }
+
+    public Result<ArrayList<Topic>> getAllTopicFromLocal(int isAlgebra){
+        database = dbHelper.getReadableDatabase();
+        ArrayList<Topic> topics = new ArrayList<>();
+        try {
+            String query_topic = "SELECT * FROM " + Topic.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
+            Cursor cursor = database.rawQuery(query_topic, null);
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    Topic topic = DbModel.getTopic(cursor);
+                    topics.add(topic);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            Log.e(Def.ERROR, ex.getMessage());
+        }
+        return  new Result<ArrayList<Topic>>(ResultStatus.TRUE, topics);
+    }
+
+
 }
 

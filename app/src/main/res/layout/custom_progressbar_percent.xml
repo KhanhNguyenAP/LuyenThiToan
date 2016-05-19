@@ -16,7 +16,7 @@
             android:indeterminate="false"/>
 
         <TextView
-            android:id="@+id/text_view_title"
+            android:id="@+id/text_view_title_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -1,6 +1,7 @@
 package com.thud.huynhnhu.luyenthitoan.datas;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
@@ -56,4 +57,17 @@ public class DbModel {
 
         return topicDb;
     }
+
+    public static Topic getTopic(Cursor cursor){
+        Topic topic = new Topic();
+        topic.setId(cursor.getString(cursor.getColumnIndex(Topic.ID)));
+        topic.setName(cursor.getString(cursor.getColumnIndex(Topic.NAME)));
+        topic.setIsBasic(cursor.getInt(cursor.getColumnIndex(Topic.ISBASIC)));
+        topic.setIsAlgebra(cursor.getInt(cursor.getColumnIndex(Topic.ISALGEBRA)));
+        topic.setImg(cursor.getString(cursor.getColumnIndex(Topic.IMAGE)));
+        topic.setReferencesQuestion(cursor.getString(cursor.getColumnIndex(Topic.REFERENCESQUESTION)));
+
+        return topic;
+    }
+
 }

@@ -34,7 +34,6 @@ public class AllDAL {
     public AllDAL(Context current){
         this.context = current;
         db_helper = new DBHelper(context);
-        database = db_helper.getWritableDatabase();
     }
 
     public Result<String> saveAll(Object... object){

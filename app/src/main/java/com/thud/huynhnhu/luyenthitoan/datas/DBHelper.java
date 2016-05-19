@@ -15,7 +15,7 @@ import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
  * Created by conheo on 12/05/2016.
  */
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "LUYENTHITOAN.db";
+    public static final String DATABASE_NAME = "luyenthitoan.db";
     private static final int DATABASE_VERSION = 1;
 
     private SQLiteDatabase database;

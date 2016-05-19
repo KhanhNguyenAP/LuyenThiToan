@@ -38,9 +38,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private TextView text_view_percent, text_view_title;
     private ProgressBar progress_custom;
     private Context context;
-    private PowerManager.WakeLock mWakerLock;
-    private Preference preference;
-    private  int countDataComplete = 0;
 
     public SaveAllDataFromSerVer(Context current){
         this.context = current;
@@ -116,7 +113,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
 
     @Override
     public void initControl() {
-        text_view_title = (TextView)view.findViewById(R.id.text_view_title);
+        text_view_title = (TextView)view.findViewById(R.id.text_view_title_progress);
         text_view_percent = (TextView)view.findViewById(R.id.text_view_percent);
         progress_custom = (ProgressBar)view.findViewById(R.id.progress_custom);
     }

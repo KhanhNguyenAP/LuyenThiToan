@@ -2,6 +2,9 @@
     <string name="app_name">Luyện Thi Toán</string>
     <string name="action_settings">Settings</string>
 
+    <string name="tab_daiso">Đại số</string>
+    <string name="tab_hinhhoc">Hình học</string>
+
     <!--Left menu-->
     <string name="quychethi">Quy chế thi</string>
     <string name="quantrong">Quan trọng</string>
@@ -14,10 +17,16 @@
     <!--Header-->
     <string name="thongtincanhan">Thông tin cá nhân</string>
     <string name="dangxuat">Đăng xuất</string>
+    <string name="msg_time_out">Sorry you are not connected to the internet.</string>
+
 
     <!--Sync data-->
     <string name="title_download_data">Syncing data...</string>
     <string name="msg_can_not_connect_to_network">Network is not available.</string>
     <string name="msg_download_data">All data has now been downloaded</string>
     <string name="msg_data_has_been_saved">Data has been saved.</string>
+    <string name="title_activity_test">TestActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

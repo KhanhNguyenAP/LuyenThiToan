@@ -24,6 +24,9 @@ public class Topic {
         this.image = image;
     }
 
+    public Topic(){
+    }
+
     @SerializedName("objectId")
     private String id;
 
@@ -41,6 +44,8 @@ public class Topic {
 
     @SerializedName("image")
     private ParseFile image;
+
+    private String img;
 
     public String getId() {
         return id;
@@ -88,5 +93,13 @@ public class Topic {
 
     public void setImage(ParseFile image) {
         this.image = image;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
