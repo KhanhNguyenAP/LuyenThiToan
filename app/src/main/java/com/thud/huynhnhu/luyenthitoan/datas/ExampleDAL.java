@@ -38,6 +38,7 @@ public class ExampleDAL {
     public Result<ArrayList<Example>> getAllExample() {
         final ArrayList<Example> arr_Example = new ArrayList<>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Example.TABLENAME);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -45,7 +46,7 @@ public class ExampleDAL {
                     for (ParseObject ob : objects){
                         Example example = new Example(ob.getObjectId(),
                                 ob.getString(""+Example.TOPICID),
-                                ob.getInt(""+Example.INDEX),
+                                ob.getInt(""+Example.POSITION),
                                 ob.getString(""+Example.QUESTION),
                                 ob.getString(""+Example.ANSWER));
                         arr_Example.add(example);

@@ -8,15 +8,15 @@ import com.google.gson.annotations.SerializedName;
 public class Exam {
     public static final String TABLENAME = "exam";
     public static final String ID = "id";
-    public static final String INDEX = "index";
+    public static final String POSITION = "position";
     public static final String NAME = "name";
     public static final String INFO = "info";
     public static final String QUESTION = "question";
     public static final String ANSWER = "answer";
 
-    public Exam(String id, int index, String name, String info, String question, String answer){
+    public Exam(String id, int position, String name, String info, String question, String answer){
         this.id = id;
-        this.index = index;
+        this.position = position;
         this.name = name;
         this.info = info;
         this.question = question;
@@ -26,8 +26,8 @@ public class Exam {
     @SerializedName("objectId")
     private String id;
 
-    @SerializedName("index")
-    private int index;
+    @SerializedName("position")
+    private int position;
 
     @SerializedName("name")
     private String name;
@@ -50,11 +50,11 @@ public class Exam {
     }
 
     public int getIndex() {
-        return index;
+        return position;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setIndex(int position) {
+        this.position = position;
     }
 
     public String getName() {

@@ -9,14 +9,14 @@ public class Example {
     public static final String TABLENAME = "example";
     public static final String ID = "id";
     public static final String TOPICID = "topicId";
-    public static final String INDEX = "index";
+    public static final String POSITION = "position";
     public static final String QUESTION = "question";
     public static final String ANSWER = "answer";
 
-    public Example(String id, String topicId, int index, String question, String answer){
+    public Example(String id, String topicId, int position, String question, String answer){
         this.id = id;
         this.topicId = topicId;
-        this.index = index;
+        this.position = position;
         this.question = question;
         this.answer = answer;
     }
@@ -27,8 +27,8 @@ public class Example {
     @SerializedName("topicId")
     private String topicId;
 
-    @SerializedName("index")
-    private int index;
+    @SerializedName("position")
+    private int position;
 
     @SerializedName("question")
     private String question;
@@ -53,11 +53,11 @@ public class Example {
     }
 
     public int getIndex() {
-        return index;
+        return position;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setIndex(int position) {
+        this.position = position;
     }
 
     public String getQuestion() {

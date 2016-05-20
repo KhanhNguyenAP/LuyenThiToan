@@ -24,12 +24,12 @@ public class DBHelper extends SQLiteOpenHelper {
             Content.ID + " TEXT PRIMARY KEY, " +
             Content.TOPICID + " TEXT, " +
             Content.NAME + " TEXT, " +
-            Content.INDEX + " INTEGER, " +
+            Content.POSITION + " INTEGER, " +
             Content.CONTENT + " TEXT)";
 
     public static final String sql_exam = "CREATE TABLE IF NOT EXISTS " + Exam.TABLENAME + "(" +
             Exam.ID + " TEXT PRIMARY KEY, " +
-            Exam.INDEX + " INTEGER, " +
+            Exam.POSITION + " INTEGER, " +
             Exam.NAME + " TEXT, " +
             Exam.INFO + " TEXT, " +
             Exam.QUESTION + " TEXT, " +
@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String sql_example = "CREATE TABLE IF NOT EXISTS " + Example.TABLENAME + "(" +
             Example.ID + " TEXT PRIMARY KEY, " +
             Example.TOPICID + " TEXT, " +
-            Example.INDEX + " INTEGER, " +
+            Example.POSITION + " INTEGER, " +
             Example.QUESTION + " TEXT, " +
             Example.ANSWER + " TEXT )";
 
@@ -65,10 +65,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         try{
-            db.execSQL(sql_content);
             db.execSQL(sql_exam);
             db.execSQL(sql_example);
             db.execSQL(sql_topic);
+            db.execSQL(sql_content);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -84,6 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Exam.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Example.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Topic.TABLENAME);
+            onCreate(db);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -100,6 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Exam.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Example.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Topic.TABLENAME);
+            onCreate(db);
         }
         catch (Exception e){
             e.printStackTrace();

@@ -48,7 +48,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
         alertDialogBuilder.setCancelable(false);
 
         initControl();
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
         //create an alert dialog
         alertDialog = alertDialogBuilder.create();
@@ -141,7 +140,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     //get Content
     private boolean getContent(){
         try {
-            Result<ArrayList<Content>> resultContent = new ContentDAL(context).getAllContent();
+            Result<String> resultContent = new ContentDAL(context).getAllContent();
             return true;
         }
         catch (Exception e){

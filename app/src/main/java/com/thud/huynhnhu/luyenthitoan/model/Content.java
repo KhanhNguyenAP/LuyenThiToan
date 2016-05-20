@@ -10,13 +10,13 @@ public class Content {
     public static final String ID = "id";
     public static final String TOPICID = "topicId";
     public static final String NAME = "name";
-    public static final String INDEX = "index";
+    public static final String POSITION = "position";
     public static final String CONTENT = "content";
 
-    public Content(String id, String name, int index, String content, String topicId){
+    public Content(String id, String name, int position, String content, String topicId){
         this.id = id;
         this.name = name;
-        this.index = index;
+        this.position = position;
         this.content = content;
         this.topicId = topicId;
     }
@@ -30,8 +30,8 @@ public class Content {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("index")
-    private int index;
+    @SerializedName("position")
+    private int position;
 
     @SerializedName("content")
     private String content;
@@ -61,11 +61,11 @@ public class Content {
     }
 
     public int getIndex() {
-        return index;
+        return position;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setIndex(int position) {
+        this.position = position;
     }
 
     public String getContent() {

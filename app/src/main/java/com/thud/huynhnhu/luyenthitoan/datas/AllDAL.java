@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Created by conheo on 12/05/2016.
+ * Created by nhu on 12/05/2016.
  */
 public class AllDAL {
     private Context context;
@@ -34,6 +34,7 @@ public class AllDAL {
     public AllDAL(Context current){
         this.context = current;
         db_helper = new DBHelper(context);
+        database = db_helper.getWritableDatabase();
     }
 
     public Result<String> saveAll(Object... object){
@@ -50,7 +51,7 @@ public class AllDAL {
                 else {
                     if (firstObject != null && firstObject instanceof Exam){
                         ArrayList<Exam> exams = ((ArrayList) object[0]);
-                        return result = new ExamDAL(context).insertExamFromLocal(exams);
+                        result = new ExamDAL(context).insertExamFromLocal(exams);
                     }
                     else {
                         if(firstObject != null && firstObject instanceof Example){
@@ -59,7 +60,7 @@ public class AllDAL {
                         }
                         else {
                             ArrayList<Topic> topics = (ArrayList) object[0];
-                            return  result = new TopicDAL(context).insertTopicFromLocal(topics);
+                            result = new TopicDAL(context).insertTopicFromLocal(topics);
                         }//end Example
                     }//end Exam
                 } // end Content

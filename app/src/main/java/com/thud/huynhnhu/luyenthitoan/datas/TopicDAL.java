@@ -11,7 +11,9 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.thud.huynhnhu.luyenthitoan.R;
+import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
@@ -40,6 +42,7 @@ public class TopicDAL {
         final ArrayList<Topic> arr_Topic = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Topic.TABLENAME);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -98,7 +101,13 @@ public class TopicDAL {
         ArrayList<Topic> topics = new ArrayList<>();
         try {
             String query_topic = "SELECT * FROM " + Topic.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
+            String query_1 = "SELECT * FROM " + Exam.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
+            String query_2 = "SELECT * FROM " + Example.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
+            String query_3 = "SELECT * FROM " + Content.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
             Cursor cursor = database.rawQuery(query_topic, null);
+            Cursor cursor_1 = database.rawQuery(query_1, null);
+            Cursor cursor_2 = database.rawQuery(query_2, null);
+            Cursor cursor_3 = database.rawQuery(query_3, null);
             if(cursor != null && cursor.moveToFirst()){
                 do{
                     Topic topic = DbModel.getTopic(cursor);

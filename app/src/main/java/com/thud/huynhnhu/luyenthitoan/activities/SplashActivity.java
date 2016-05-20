@@ -2,11 +2,13 @@ package com.thud.huynhnhu.luyenthitoan.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.Preference;
 
 import com.thud.huynhnhu.luyenthitoan.R;
+import com.thud.huynhnhu.luyenthitoan.utils.async.SaveAllDataFromSerVer;
 
 /**
  * Created by KhanhNguyen on 5/11/2016.

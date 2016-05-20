@@ -38,13 +38,14 @@ public class ExamDAL {
     public Result<ArrayList<Exam>> getAllExam() {
         final ArrayList<Exam> arr_Exam = new ArrayList<>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Exam.TABLENAME);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if ( e ==  null){
                     for (ParseObject ob : objects){
                         Exam exam = new Exam(ob.getObjectId(),
-                                ob.getInt(""+Exam.INDEX),
+                                ob.getInt(""+Exam.POSITION),
                                 ob.getString(""+Exam.NAME),
                                 ob.getString(""+Exam.INFO),
                                 ob.getString(""+Exam.QUESTION),

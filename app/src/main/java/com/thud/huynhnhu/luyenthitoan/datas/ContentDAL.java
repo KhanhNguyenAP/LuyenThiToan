@@ -34,30 +34,39 @@ public class ContentDAL {
         database = dbHelper.getWritableDatabase();
     }
 
-    public Result<ArrayList<Content>> getAllContent() {
-        final ArrayList<Content> arr_ConTent = new ArrayList<>();
-        ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Content.TABLENAME);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if ( e ==  null){
-                    for (ParseObject ob : objects){
-                        Content content = new Content(ob.getObjectId(),
-                                ob.getString(""+Content.NAME),
-                                ob.getInt(""+Content.INDEX),
-                                ob.getString(""+Content.CONTENT),
-                                ob.getString(""+Content.TOPICID));
-                        arr_ConTent.add(content);
-                    }
+    public Result<String> getAllContent() {
+        try{
+            final ArrayList<Content> arr_ConTent = new ArrayList<>();
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Content.TABLENAME);
+            query.setLimit(1000);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e) {
+                    if ( e ==  null){
+                        for (ParseObject ob : objects){
+                            Content content = new Content(ob.getObjectId(),
+                                    ob.getString(""+Content.NAME),
+                                    ob.getInt(""+Content.POSITION),
+                                    ob.getString(""+Content.CONTENT),
+                                    ob.getString(""+Content.TOPICID));
+                            arr_ConTent.add(content);
+                        }
 
-                    if (arr_ConTent.size() > 0){
-                        Result<String> result = new AllDAL(context).saveAll(arr_ConTent);
+                        if (arr_ConTent.size() > 0){
+                            Result<String> result = new AllDAL(context).saveAll(arr_ConTent);
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        return new Result<ArrayList<Content>>(ResultStatus.TRUE, arr_ConTent);
+            return new Result<String>(ResultStatus.TRUE, context.getResources().getString(R.string.msg_data_has_been_saved));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, null);
+
+            return new Result<String>(ResultStatus.FALSE, null, Def.STRING_EMPTY);
+        }
     }
 
     /*

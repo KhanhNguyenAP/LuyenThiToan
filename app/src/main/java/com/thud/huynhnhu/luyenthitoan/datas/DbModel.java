@@ -15,7 +15,7 @@ public class DbModel {
     public static ContentValues getContentValueContent(Content content){
         ContentValues contentDb = new ContentValues();
         contentDb.put(Content.ID, content.getId());
-        contentDb.put(Content.INDEX, content.getIndex());
+        contentDb.put(Content.POSITION, content.getIndex());
         contentDb.put(Content.CONTENT, content.getContent());
         contentDb.put(Content.NAME, content.getName());
         contentDb.put(Content.TOPICID, content.getTopicId());
@@ -26,7 +26,7 @@ public class DbModel {
     public static ContentValues getContentValueExam(Exam exam){
         ContentValues examDb = new ContentValues();
         examDb.put(Exam.ID, exam.getId());
-        examDb.put(Exam.INDEX, exam.getIndex());
+        examDb.put(Exam.POSITION, exam.getIndex());
         examDb.put(Exam.NAME, exam.getName());
         examDb.put(Exam.INFO, exam.getInfo());
         examDb.put(Exam.QUESTION, exam.getQuestion());
@@ -38,7 +38,7 @@ public class DbModel {
     public static ContentValues getContentValueExample(Example example){
         ContentValues exampleDb = new ContentValues();
         exampleDb.put(Example.ID, example.getId());
-        exampleDb.put(Example.INDEX, example.getIndex());
+        exampleDb.put(Example.POSITION, example.getIndex());
         exampleDb.put(Example.TOPICID, example.getTopicId());
         exampleDb.put(Example.QUESTION, example.getQuestion());
         exampleDb.put(Example.ANSWER, example.getAnswer());
