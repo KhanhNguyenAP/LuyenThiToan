@@ -5,5 +5,4 @@ package com.thud.huynhnhu.luyenthitoan.utils.interfaces;
  */
 public class Flags {
     public static int synch_data = 0;
-    public static int chosen_daiso = 1;
 }

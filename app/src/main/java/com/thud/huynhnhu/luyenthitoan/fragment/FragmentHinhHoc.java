@@ -15,7 +15,6 @@ import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
-import com.thud.huynhnhu.luyenthitoan.utils.customcontrol.IndexableListView;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ public class FragmentHinhHoc extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getActivity();
-        Flags.chosen_daiso = 0;
     }
 
     @Override
@@ -57,7 +55,7 @@ public class FragmentHinhHoc extends Fragment {
 
         @Override
         protected Result<ArrayList<Topic>> doInBackground(String... strings){
-            return new TopicDAL(context).getAllTopicFromLocal(Flags.chosen_daiso);
+            return new TopicDAL(context).getAllTopicFromLocal(0);
         }
 
         @Override
@@ -69,7 +67,6 @@ public class FragmentHinhHoc extends Fragment {
                 if (arr_Topic != null){
                     topic_Adapter = new TopicAdapter(context, arr_Topic);
                     lv_list_daiso.setAdapter(topic_Adapter);
-                    ((IndexableListView)lv_list_daiso).setMyFastScrollEnabled(true, true);
                 }
             }
         }

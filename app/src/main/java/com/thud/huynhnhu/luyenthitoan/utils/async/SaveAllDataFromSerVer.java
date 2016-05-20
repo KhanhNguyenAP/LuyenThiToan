@@ -3,6 +3,7 @@ package com.thud.huynhnhu.luyenthitoan.utils.async;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.PowerManager;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
+import com.thud.huynhnhu.luyenthitoan.activities.MainActivity;
 import com.thud.huynhnhu.luyenthitoan.datas.ContentDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
@@ -69,15 +71,16 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
                 return new Result<String>(ResultStatus.FALSE, null, context.getResources().getString(R.string.msg_can_not_connect_to_network));
             }
 
-            getContent();
+            getTopic();
             publishProgress(1);
             getExam();
             publishProgress(2);
             getExample();
             publishProgress(3);
-            getTopic();
+            getContent();
             publishProgress(4);
-            return new Result<String>(ResultStatus.FALSE, null, context.getResources().getString(R.string.msg_data_has_been_saved));
+
+            return new Result<String>(ResultStatus.TRUE, null, context.getResources().getString(R.string.msg_data_has_been_saved));
         }
         catch (Exception e){
             e.printStackTrace();

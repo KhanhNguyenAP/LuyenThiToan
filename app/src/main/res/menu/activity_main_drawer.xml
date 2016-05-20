@@ -3,34 +3,36 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/left_trangchu"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="@string/trangchu" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/left_kienthuccanban"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/kienthuccanban" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/left_luyenthi"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/luyenthi" />
+        <item
+            android:id="@+id/left_dethimau"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="@string/dethimau" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/left_maytinh"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/maytinh" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/left_thongtinungdung"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/thongtinungdung" />
+        <item
+            android:id="@+id/left_thoat"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/thoat" />
+    </group>
 </menu>

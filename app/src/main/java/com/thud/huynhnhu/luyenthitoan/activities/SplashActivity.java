@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.Preference;
+import android.test.SingleLaunchActivityTestCase;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.utils.async.SaveAllDataFromSerVer;
@@ -18,7 +19,7 @@ public class SplashActivity extends Activity{
     private Preference preference;
 
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 2000;
+    private static int SPLASH_TIME_OUT = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -27,6 +28,8 @@ public class SplashActivity extends Activity{
 
         //get share preference
         preference = new Preference(SplashActivity.this);
+
+        new SaveAllDataFromSerVer(SplashActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         new Handler().postDelayed(new Runnable() {
             @Override

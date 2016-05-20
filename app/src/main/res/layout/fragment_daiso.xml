@@ -4,9 +4,11 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/layout_padding_15"
+        android:paddingRight="@dimen/layout_padding_15">
 
-        <com.thud.huynhnhu.luyenthitoan.utils.customcontrol.IndexableListView
+        <ListView
             android:id="@+id/lv_daiso"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

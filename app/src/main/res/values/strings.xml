@@ -6,13 +6,13 @@
     <string name="tab_hinhhoc">Hình học</string>
 
     <!--Left menu-->
-    <string name="quychethi">Quy chế thi</string>
-    <string name="quantrong">Quan trọng</string>
-    <string name="hdsd">Hướng dẫn sử dụng</string>
-    <string name="lichsu_left">Lịch sử</string>
-    <string name="gioithieu">Giới thiệu</string>
-    <string name="gopy">Góp ý</string>
-    <string name="danhgia">Đánh giá</string>
+    <string name="trangchu">Trang chủ</string>
+    <string name="kienthuccanban">Kiến thức căn bản</string>
+    <string name="luyenthi">Luyện thi</string>
+    <string name="dethimau">Đề thi mẫu</string>
+    <string name="maytinh">Máy tính</string>
+    <string name="thongtinungdung">Thông tin ứng dụng</string>
+    <string name="thoat">Thoát</string>
 
     <!--Header-->
     <string name="thongtincanhan">Thông tin cá nhân</string>
@@ -29,4 +29,5 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_show">ShowActivity</string>
 </resources>

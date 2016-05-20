@@ -100,14 +100,8 @@ public class TopicDAL {
         database = dbHelper.getReadableDatabase();
         ArrayList<Topic> topics = new ArrayList<>();
         try {
-            String query_topic = "SELECT * FROM " + Topic.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
-            String query_1 = "SELECT * FROM " + Exam.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
-            String query_2 = "SELECT * FROM " + Example.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
-            String query_3 = "SELECT * FROM " + Content.TABLENAME; /*+ " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;*/
+            String query_topic = "SELECT * FROM " + Topic.TABLENAME + " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;
             Cursor cursor = database.rawQuery(query_topic, null);
-            Cursor cursor_1 = database.rawQuery(query_1, null);
-            Cursor cursor_2 = database.rawQuery(query_2, null);
-            Cursor cursor_3 = database.rawQuery(query_3, null);
             if(cursor != null && cursor.moveToFirst()){
                 do{
                     Topic topic = DbModel.getTopic(cursor);

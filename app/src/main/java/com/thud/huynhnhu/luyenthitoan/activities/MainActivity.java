@@ -53,8 +53,6 @@ public class MainActivity extends BaseActivity
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        new SaveAllDataFromSerVer(MainActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
         initFlags();
 
         initControl();
@@ -95,17 +93,19 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.left_trangchu) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.left_kienthuccanban) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.left_luyenthi) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.left_dethimau) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.left_maytinh) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.left_thongtinungdung) {
+
+        } else if (id == R.id.left_thoat){
 
         }
 
