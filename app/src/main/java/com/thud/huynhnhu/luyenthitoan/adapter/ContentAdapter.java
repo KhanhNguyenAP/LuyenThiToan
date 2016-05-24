@@ -8,18 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
+import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
 
 import java.util.ArrayList;
 
 /**
- * Created by nhu on 5/19/2016.
+ * Created by KhanhNguyen on 5/19/2016.
  */
-public class TopicAdapter extends ArrayAdapter<Topic> {
+public class ContentAdapter extends ArrayAdapter<Content> {
     private Context context;
-    private ArrayList<Topic> values;
+    private ArrayList<Content> values;
 
-    public TopicAdapter(Context context, ArrayList<Topic> values) {
+    public ContentAdapter(Context context, ArrayList<Content> values) {
         super(context, -1, values);
         this.context = context;
         this.values = values;
@@ -34,18 +35,16 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        View rowView;
-        if (convertView == null){
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            rowView = inflater.inflate(R.layout.item_text_view, parent, false);
-        }
-        else {
-            rowView= convertView;
-        }
-
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.item_show_detail, parent, false);
         rowView.setTag(values.get(position).getId());
-        final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title_default);
+
+        final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title);
+        final TextView text_view_content = (TextView) rowView.findViewById(R.id.text_view_content);
+
         text_view_title.setText(values.get(position).getName());
+        text_view_content.setText(values.get(position).getContent());
+
         return rowView;
     }
 }

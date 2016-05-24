@@ -1,5 +1,6 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -22,6 +23,7 @@ import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDaiSo;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentHinhHoc;
 import com.thud.huynhnhu.luyenthitoan.utils.async.SaveAllDataFromSerVer;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
+import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,12 +92,13 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
+        Intent intent = null;
         if (id == R.id.left_trangchu) {
-            // Handle the camera action
+            intent = new Intent(MainActivity.this, MainActivity.class);
         } else if (id == R.id.left_kienthuccanban) {
-
+            intent = new Intent(MainActivity.this, MainActivity.class);
         } else if (id == R.id.left_luyenthi) {
+            intent = new Intent(MainActivity.this, LuyenThiActivity.class);
 
         } else if (id == R.id.left_dethimau) {
 
@@ -106,7 +109,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.left_thoat){
 
         }
-
+        startActivity(intent);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -114,6 +117,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void initFlags() {
+        Flags.synch_data = 1;
     }
 
     @Override

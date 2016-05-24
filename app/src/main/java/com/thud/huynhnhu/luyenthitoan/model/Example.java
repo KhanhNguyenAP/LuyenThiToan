@@ -21,6 +21,9 @@ public class Example {
         this.answer = answer;
     }
 
+    public Example(){
+    }
+
     @SerializedName("objectId")
     private String id;
 

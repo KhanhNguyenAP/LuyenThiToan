@@ -19,7 +19,7 @@ import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import java.util.ArrayList;
 
 public class FragmentLuyenThiDaiSo extends Fragment {
-    private ListView lv_list_daiso;
+    private ListView lv_list_luyenthi;
     public static TopicAdapter topic_Adapter;
     private Context context;
 
@@ -35,8 +35,8 @@ public class FragmentLuyenThiDaiSo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_daiso, container, false);
-        lv_list_daiso = (ListView) view.findViewById(R.id.lv_daiso);
+        View view = inflater.inflate(R.layout.item_list_view, container, false);
+        lv_list_luyenthi = (ListView) view.findViewById(R.id.lv_daiso);
         return view;
     }
 
@@ -54,7 +54,7 @@ public class FragmentLuyenThiDaiSo extends Fragment {
 
         @Override
         protected Result<ArrayList<Topic>> doInBackground(String... strings){
-            return new TopicDAL(context).getAllTopicFromLocal(1);
+            return new TopicDAL(context).getAllTopicFromLocalIsAlgebra(1, 1);
         }
 
         @Override
@@ -65,7 +65,7 @@ public class FragmentLuyenThiDaiSo extends Fragment {
 
                 if (arr_Topic != null){
                     topic_Adapter = new TopicAdapter(context, arr_Topic);
-                    lv_list_daiso.setAdapter(topic_Adapter);
+                    lv_list_luyenthi.setAdapter(topic_Adapter);
                 }
             }
         }

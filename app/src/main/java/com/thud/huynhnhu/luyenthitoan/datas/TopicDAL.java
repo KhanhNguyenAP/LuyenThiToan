@@ -35,7 +35,6 @@ public class TopicDAL {
     public TopicDAL(Context current){
         this.context = current;
         dbHelper = new DBHelper(context);
-        database = dbHelper.getWritableDatabase();
     }
 
     public Result<ArrayList<Topic>> getAllTopic() {
@@ -96,11 +95,13 @@ public class TopicDAL {
         return new Result<String>(ResultStatus.FALSE, null);
     }
 
-    public Result<ArrayList<Topic>> getAllTopicFromLocalIsAlgebra(int isAlgebra){
+    public Result<ArrayList<Topic>> getAllTopicFromLocalIsAlgebra(int isBasic, int isAlgebra){
         database = dbHelper.getReadableDatabase();
         ArrayList<Topic> topics = new ArrayList<>();
         try {
-            String query_topic = "SELECT * FROM " + Topic.TABLENAME + " WHERE " + Topic.ISALGEBRA + " = " +isAlgebra;
+            String query_topic = "SELECT * FROM " + Topic.TABLENAME + " WHERE "
+                                    + Topic.ISBASIC + " = " +isBasic + " AND "
+                                    + Topic.ISALGEBRA + " = " +isAlgebra;
             Cursor cursor = database.rawQuery(query_topic, null);
             if(cursor != null && cursor.moveToFirst()){
                 do{

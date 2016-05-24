@@ -23,6 +23,9 @@ public class Exam {
         this.answer = answer;
     }
 
+    public Exam(){
+    }
+
     @SerializedName("objectId")
     private String id;
 

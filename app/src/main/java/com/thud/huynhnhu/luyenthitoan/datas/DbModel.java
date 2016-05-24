@@ -15,13 +15,26 @@ public class DbModel {
     public static ContentValues getContentValueContent(Content content){
         ContentValues contentDb = new ContentValues();
         contentDb.put(Content.ID, content.getId());
-        contentDb.put(Content.POSITION, content.getIndex());
+        contentDb.put(Content.POSITION, content.getPosition());
         contentDb.put(Content.CONTENT, content.getContent());
         contentDb.put(Content.NAME, content.getName());
         contentDb.put(Content.TOPICID, content.getTopicId());
 
         return contentDb;
     }
+
+    public static Content getContent(Cursor cursor){
+        Content content = new Content();
+        content.setId(cursor.getString(cursor.getColumnIndex(Content.ID)));
+        content.setTopicId(cursor.getString(cursor.getColumnIndex(Content.TOPICID)));
+        content.setName(cursor.getString(cursor.getColumnIndex(Content.NAME)));
+        content.setPosition(cursor.getInt(cursor.getColumnIndex(Content.POSITION)));
+        content.setContent(cursor.getString(cursor.getColumnIndex(Content.CONTENT)));
+
+        return content;
+    }
+
+    /*----------Exam----------*/
 
     public static ContentValues getContentValueExam(Exam exam){
         ContentValues examDb = new ContentValues();
@@ -35,6 +48,19 @@ public class DbModel {
         return examDb;
     }
 
+    public static Exam getExam(Cursor cursor){
+        Exam exam = new Exam();
+        exam.setId(cursor.getString(cursor.getColumnIndex(Exam.ID)));
+        exam.setAnswer(cursor.getString(cursor.getColumnIndex(Exam.ANSWER)));
+        exam.setIndex(cursor.getInt(cursor.getColumnIndex(Exam.POSITION)));
+        exam.setInfo(cursor.getString(cursor.getColumnIndex(Exam.INFO)));
+        exam.setName(cursor.getString(cursor.getColumnIndex(Exam.NAME)));
+        exam.setQuestion(cursor.getString(cursor.getColumnIndex(Exam.QUESTION)));
+
+        return exam;
+    }
+
+    /*----------Example----------*/
     public static ContentValues getContentValueExample(Example example){
         ContentValues exampleDb = new ContentValues();
         exampleDb.put(Example.ID, example.getId());
@@ -46,6 +72,18 @@ public class DbModel {
         return exampleDb;
     }
 
+    public static Example getExample(Cursor cursor){
+        Example example = new Example();
+        example.setId(cursor.getString(cursor.getColumnIndex(Example.ID)));
+        example.setIndex(cursor.getInt(cursor.getColumnIndex(Example.POSITION)));
+        example.setTopicId(cursor.getString(cursor.getColumnIndex(Example.TOPICID)));
+        example.setQuestion(cursor.getString(cursor.getColumnIndex(Example.QUESTION)));
+        example.setAnswer(cursor.getString(cursor.getColumnIndex(Example.ANSWER)));
+
+        return example;
+    }
+
+    /*----------Topic----------*/
     public static ContentValues getContentValueTopic(Topic topic){
         ContentValues topicDb = new ContentValues();
         topicDb.put(Topic.ID, topic.getId());

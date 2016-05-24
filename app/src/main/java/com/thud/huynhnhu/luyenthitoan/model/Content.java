@@ -21,6 +21,9 @@ public class Content {
         this.topicId = topicId;
     }
 
+    public Content(){
+    }
+
     @SerializedName("objectId")
     private String id;
 
@@ -74,5 +77,13 @@ public class Content {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

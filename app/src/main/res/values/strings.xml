@@ -4,6 +4,8 @@
 
     <string name="tab_daiso">Đại số</string>
     <string name="tab_hinhhoc">Hình học</string>
+    <string name="tab_lythuyet">Lý thuyết</string>
+    <string name="tab_vidu">Ví dụ</string>
 
     <!--Left menu-->
     <string name="trangchu">Trang chủ</string>
@@ -13,6 +15,7 @@
     <string name="maytinh">Máy tính</string>
     <string name="thongtinungdung">Thông tin ứng dụng</string>
     <string name="thoat">Thoát</string>
+    <string name="chitiet">Thông tin chi tiết</string>
 
     <!--Header-->
     <string name="thongtincanhan">Thông tin cá nhân</string>

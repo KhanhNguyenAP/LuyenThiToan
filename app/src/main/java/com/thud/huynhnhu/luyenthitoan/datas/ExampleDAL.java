@@ -2,6 +2,7 @@ package com.thud.huynhnhu.luyenthitoan.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -89,6 +90,30 @@ public class ExampleDAL {
         }
 
         return new Result<String>(ResultStatus.FALSE, null);
+    }
+
+    public Result<ArrayList<Example>> getAllExampleFromLoCal(String topicId){
+        ArrayList<Example> examples = new ArrayList<>();
+        database = dbHelper.getReadableDatabase();
+        try {
+            String query = "SELECT * FROM " +Example.TABLENAME + " WHERE " +Example.TOPICID + " ='" + topicId+"'";
+            Cursor cursor = database.rawQuery(query, null);
+
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    Example example = DbModel.getExample(cursor);
+                    examples.add(example);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+        return new Result<ArrayList<Example>>(ResultStatus.TRUE, examples);
     }
 }
 

@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDaiSo;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentHinhHoc;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiDaiSo;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiHinhHoc;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 
 import java.util.ArrayList;
@@ -32,20 +34,20 @@ public class LuyenThiActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_luyenthi);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_luyenthi);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_luyenthi);
         navigationView.setNavigationItemSelectedListener(this);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_luyenthi);
         setupViewPager(viewPager);
 
         initFlags();
@@ -58,7 +60,7 @@ public class LuyenThiActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -115,7 +117,7 @@ public class LuyenThiActivity extends BaseActivity
 
     @Override
     public void initControl() {
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs_luyenthi);
         mlayoutInflater = LayoutInflater.from(LuyenThiActivity.this);
     }
 
@@ -137,8 +139,8 @@ public class LuyenThiActivity extends BaseActivity
     //Set up View Pager and TabLayout
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentDaiSo(), getResources().getString(R.string.tab_daiso));
-        adapter.addFragment(new FragmentHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
+        adapter.addFragment(new FragmentLuyenThiDaiSo(), getResources().getString(R.string.tab_daiso));
+        adapter.addFragment(new FragmentLuyenThiHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
         viewPager.setAdapter(adapter);
     }
 

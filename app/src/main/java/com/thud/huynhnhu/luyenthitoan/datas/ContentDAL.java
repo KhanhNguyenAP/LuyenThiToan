@@ -2,6 +2,7 @@ package com.thud.huynhnhu.luyenthitoan.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -96,6 +97,30 @@ public class ContentDAL {
         }
 
         return new Result<String>(ResultStatus.FALSE, null);
+    }
+
+    public Result<ArrayList<Content>> getAllConTentFromLoCal(String topicId){
+        ArrayList<Content> contents = new ArrayList<>();
+        database = dbHelper.getReadableDatabase();
+        try {
+            String query = "SELECT * FROM " +Content.TABLENAME + " WHERE " +Content.TOPICID + " ='" + topicId+"'";
+            Cursor cursor = database.rawQuery(query, null);
+
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    Content content = DbModel.getContent(cursor);
+                    contents.add(content);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+        return new Result<ArrayList<Content>>(ResultStatus.TRUE, contents);
     }
 }
 
