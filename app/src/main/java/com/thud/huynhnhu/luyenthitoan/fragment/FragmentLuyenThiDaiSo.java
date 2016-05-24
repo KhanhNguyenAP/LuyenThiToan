@@ -15,11 +15,10 @@ import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
-import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
-public class FragmentHinhHoc extends Fragment {
+public class FragmentLuyenThiDaiSo extends Fragment {
     private ListView lv_list_daiso;
     public static TopicAdapter topic_Adapter;
     private Context context;
@@ -55,7 +54,7 @@ public class FragmentHinhHoc extends Fragment {
 
         @Override
         protected Result<ArrayList<Topic>> doInBackground(String... strings){
-            return new TopicDAL(context).getAllTopicFromLocalIsAlgebra(0);
+            return new TopicDAL(context).getAllTopicFromLocal(1);
         }
 
         @Override

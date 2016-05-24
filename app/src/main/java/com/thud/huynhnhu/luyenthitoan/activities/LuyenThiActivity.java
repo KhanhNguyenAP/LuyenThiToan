@@ -1,32 +1,29 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.view.LayoutInflater;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDaiSo;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentHinhHoc;
-import com.thud.huynhnhu.luyenthitoan.utils.async.SaveAllDataFromSerVer;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity
+public class LuyenThiActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityInterface {
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -119,7 +116,7 @@ public class MainActivity extends BaseActivity
     @Override
     public void initControl() {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
-        mlayoutInflater = LayoutInflater.from(MainActivity.this);
+        mlayoutInflater = LayoutInflater.from(LuyenThiActivity.this);
     }
 
     @Override

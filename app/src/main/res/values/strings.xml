@@ -25,9 +25,8 @@
     <string name="msg_can_not_connect_to_network">Network is not available.</string>
     <string name="msg_download_data">All data has now been downloaded</string>
     <string name="msg_data_has_been_saved">Data has been saved.</string>
-    <string name="title_activity_test">TestActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_show">ShowActivity</string>
+    <string name="title_activity_show">Show Activity</string>
 </resources>

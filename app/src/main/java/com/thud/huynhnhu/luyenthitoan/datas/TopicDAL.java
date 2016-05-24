@@ -96,7 +96,7 @@ public class TopicDAL {
         return new Result<String>(ResultStatus.FALSE, null);
     }
 
-    public Result<ArrayList<Topic>> getAllTopicFromLocal(int isAlgebra){
+    public Result<ArrayList<Topic>> getAllTopicFromLocalIsAlgebra(int isAlgebra){
         database = dbHelper.getReadableDatabase();
         ArrayList<Topic> topics = new ArrayList<>();
         try {
@@ -117,7 +117,5 @@ public class TopicDAL {
         }
         return  new Result<ArrayList<Topic>>(ResultStatus.TRUE, topics);
     }
-
-
 }
 

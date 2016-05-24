@@ -55,7 +55,7 @@ public class FragmentDaiSo extends Fragment {
 
         @Override
         protected Result<ArrayList<Topic>> doInBackground(String... strings){
-            return new TopicDAL(context).getAllTopicFromLocal(1);
+            return new TopicDAL(context).getAllTopicFromLocalIsAlgebra(1);
         }
 
         @Override
