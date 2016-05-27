@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_white"
+    android:paddingLeft="@dimen/layout_padding_5"
+    android:paddingRight="@dimen/layout_padding_5"
     android:focusable="false">
 
     <!-- Định nghĩa-->
@@ -17,10 +19,10 @@
         android:textStyle="bold"
         android:textSize="@dimen/title_size_20"/>
 
-    <TextView
-        android:id="@+id/text_view_content"
+    <io.github.kexanie.library.MathView
+        android:id="@+id/mathview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/layout_padding_10"
-        android:textSize="@dimen/title_size_16"/>
+        android:layout_height="match_parent"
+        auto:engine="MathJax">
+    </io.github.kexanie.library.MathView>
 </LinearLayout>

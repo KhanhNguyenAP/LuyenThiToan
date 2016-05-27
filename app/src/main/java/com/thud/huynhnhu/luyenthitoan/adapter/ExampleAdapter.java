@@ -12,6 +12,8 @@ import com.thud.huynhnhu.luyenthitoan.model.Example;
 
 import java.util.ArrayList;
 
+import io.github.kexanie.library.MathView;
+
 /**
  * Created by khanh on 5/24/2016.
  */
@@ -39,10 +41,10 @@ public class ExampleAdapter extends ArrayAdapter<Example> {
         rowView.setTag(values.get(position).getId());
 
         final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title);
-        final TextView text_view_content = (TextView) rowView.findViewById(R.id.text_view_content);
+        final MathView mathview = (MathView) rowView.findViewById(R.id.mathview);
 
         text_view_title.setText(values.get(position).getQuestion());
-        text_view_content.setText(values.get(position).getAnswer());
+        mathview.setText(values.get(position).getAnswer());
 
         return rowView;
     }

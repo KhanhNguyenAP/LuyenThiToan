@@ -13,6 +13,8 @@ import com.thud.huynhnhu.luyenthitoan.model.Topic;
 
 import java.util.ArrayList;
 
+import io.github.kexanie.library.MathView;
+
 /**
  * Created by KhanhNguyen on 5/19/2016.
  */
@@ -40,10 +42,10 @@ public class ContentAdapter extends ArrayAdapter<Content> {
         rowView.setTag(values.get(position).getId());
 
         final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title);
-        final TextView text_view_content = (TextView) rowView.findViewById(R.id.text_view_content);
+        final MathView mathview = (MathView) rowView.findViewById(R.id.mathview);
 
         text_view_title.setText(values.get(position).getName());
-        text_view_content.setText(values.get(position).getContent());
+        mathview.setText(values.get(position).getContent());
 
         return rowView;
     }

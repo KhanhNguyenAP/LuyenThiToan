@@ -103,6 +103,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.left_dethimau) {
 
         } else if (id == R.id.left_maytinh) {
+            intent = new Intent(MainActivity.this, CalculatorActivity.class);
 
         } else if (id == R.id.left_thongtinungdung) {
 
