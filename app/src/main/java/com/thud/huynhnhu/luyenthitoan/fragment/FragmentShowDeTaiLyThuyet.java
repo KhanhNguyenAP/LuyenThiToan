@@ -23,7 +23,7 @@ import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
-public class FragmentShowDeTailInfo extends Fragment{
+public class FragmentShowDeTaiLyThuyet extends Fragment{
     private ListView lv_list_info;
     public static ContentAdapter content_Adapter;
     private Context context;

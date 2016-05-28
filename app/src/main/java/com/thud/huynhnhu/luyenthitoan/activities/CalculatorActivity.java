@@ -2,23 +2,11 @@ package com.thud.huynhnhu.luyenthitoan.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.thud.huynhnhu.luyenthitoan.R;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentShowDeTailExample;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentShowDeTailInfo;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CalculatorActivity extends Activity
         implements ActivityInterface {

@@ -6,6 +6,8 @@
     <string name="tab_hinhhoc">Hình học</string>
     <string name="tab_lythuyet">Lý thuyết</string>
     <string name="tab_vidu">Ví dụ</string>
+    <string name="tab_phuongphapgiai">Phương pháp giải</string>
+    <string name="tab_baitapmau">Bài tập mẫu</string>
 
     <!--Left menu-->
     <string name="trangchu">Trang chủ</string>

@@ -5,7 +5,8 @@ package com.thud.huynhnhu.luyenthitoan.utils.interfaces;
  */
 public class Flags {
     public static int synch_data = 0;
-    public static int chosen_screen_main = 0; //0: Kiến thức căn bản, 1: Đạo hàm,
+    public static int chosen_screen_main = 0; //0: Kiến thức căn bản, 1: Đạo hàm
+    public static int chosen_exam = 0; //0: question, 1: answer
 
     public static String chosen_ma_kienthuc = Def.STRING_EMPTY;
 }

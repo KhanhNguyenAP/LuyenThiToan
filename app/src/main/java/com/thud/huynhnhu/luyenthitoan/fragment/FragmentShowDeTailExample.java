@@ -10,15 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
-import com.thud.huynhnhu.luyenthitoan.adapter.ContentAdapter;
 import com.thud.huynhnhu.luyenthitoan.adapter.ExampleAdapter;
-import com.thud.huynhnhu.luyenthitoan.datas.ContentDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
-import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
-import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;

@@ -10,14 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 
 import com.thud.huynhnhu.luyenthitoan.R;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentShowDeTailExample;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentShowDeTaiLyThuyet;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentShowDeTailExample;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowDetailActivity extends BaseActivity
+public class ShowDetailLuyenThiActivity extends BaseActivity
         implements ActivityInterface {
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -53,7 +53,7 @@ public class ShowDetailActivity extends BaseActivity
     @Override
     public void initControl() {
         tabLayout = (TabLayout) findViewById(R.id.tabs_show_detail);
-        mlayoutInflater = LayoutInflater.from(ShowDetailActivity.this);
+        mlayoutInflater = LayoutInflater.from(ShowDetailLuyenThiActivity.this);
     }
 
     @Override
@@ -74,8 +74,8 @@ public class ShowDetailActivity extends BaseActivity
     //Set up View Pager and TabLayout
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentShowDeTaiLyThuyet(), getResources().getString(R.string.tab_lythuyet));
-        adapter.addFragment(new FragmentShowDeTailExample(), getResources().getString(R.string.tab_vidu));
+        adapter.addFragment(new FragmentShowDeTaiLyThuyet(), getResources().getString(R.string.tab_phuongphapgiai));
+        adapter.addFragment(new FragmentShowDeTailExample(), getResources().getString(R.string.tab_baitapmau));
         viewPager.setAdapter(adapter);
     }
 
