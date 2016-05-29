@@ -4,7 +4,8 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/layout_padding_50"
+    android:paddingTop="@dimen/layout_padding_5"
     android:background="@color/md_white"
     android:focusable="false">
 

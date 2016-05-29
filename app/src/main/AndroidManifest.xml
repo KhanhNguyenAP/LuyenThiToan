@@ -50,6 +50,20 @@
             android:name=".activities.ShowDetailLuyenThiActivity"
             android:label="@string/chitiet"
             android:theme="@style/AppTheme.NoActionBar" />
-    </application>
 
+        <activity
+            android:name=".activities.DeThiActivity"
+            android:label="@string/dethimau"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.ShowInfoAppActivity"
+            android:label="@string/thongtinungdung"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
 </manifest>

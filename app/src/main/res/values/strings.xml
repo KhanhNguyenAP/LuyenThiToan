@@ -34,4 +34,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_show">Show Activity</string>
+
+    <!--infomation app-->
+    <string name="app_name_title">Tên ứng dụng: </string>
+    <string name="app_author_title">Họ tên: </string>
+    <string name="app_author">Lê Thị Huỳnh Như</string>
+    <string name="app_mssv_title">MSSV: </string>
+    <string name="app_mssv">B1204166</string>
+    <string name="app_version_title">Version: </string>
+    <string name="app_version">1.0</string>
+    <string name="close">Đóng</string>
 </resources>

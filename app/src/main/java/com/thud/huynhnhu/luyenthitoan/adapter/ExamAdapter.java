@@ -47,12 +47,8 @@ public class ExamAdapter extends ArrayAdapter<Exam> {
 
         rowView.setTag(values.get(position).getId());
         final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title_default);
-        if (Flags.chosen_exam == 0){
-            text_view_title.setText(values.get(position).getQuestion());
-        }
-        else{
-            text_view_title.setText(values.get(position).getAnswer());
-        }
+
+        text_view_title.setText(values.get(position).getName());
         return rowView;
     }
 }

@@ -1,14 +1,12 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +19,6 @@ import android.view.MenuItem;
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDaiSo;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentHinhHoc;
-import com.thud.huynhnhu.luyenthitoan.utils.async.SaveAllDataFromSerVer;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
@@ -63,12 +60,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     @Override
@@ -94,23 +86,24 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
         Intent intent = null;
         if (id == R.id.left_trangchu) {
-            intent = new Intent(MainActivity.this, MainActivity.class);
+            intent = new Intent(MainActivity.this, HomeActivity.class);
         } else if (id == R.id.left_kienthuccanban) {
             intent = new Intent(MainActivity.this, MainActivity.class);
         } else if (id == R.id.left_luyenthi) {
             intent = new Intent(MainActivity.this, LuyenThiActivity.class);
-
         } else if (id == R.id.left_dethimau) {
-
+            intent = new Intent(MainActivity.this, DeThiActivity.class);
         } else if (id == R.id.left_maytinh) {
             intent = new Intent(MainActivity.this, CalculatorActivity.class);
-
         } else if (id == R.id.left_thongtinungdung) {
-
+            intent = new Intent(MainActivity.this, ShowInfoAppActivity.class);
         } else if (id == R.id.left_thoat){
-
+            finish();
+            System.exit(0);
         }
-        startActivity(intent);
+        if (intent!=null){
+            startActivity(intent);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

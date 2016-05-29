@@ -14,8 +14,8 @@
         android:id="@+id/text_view_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/layout_padding_5"
         android:textColor="@color/colorPrimaryDark"
+        android:gravity="center_horizontal"
         android:textStyle="bold"
         android:textSize="@dimen/title_size_20"/>
 
@@ -23,6 +23,7 @@
         android:id="@+id/mathview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/layout_padding_5"
         auto:engine="MathJax">
     </io.github.kexanie.library.MathView>
 </LinearLayout>

@@ -11,6 +11,6 @@
         <ListView
             android:id="@+id/lv_daiso"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_padding_65" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 </FrameLayout>

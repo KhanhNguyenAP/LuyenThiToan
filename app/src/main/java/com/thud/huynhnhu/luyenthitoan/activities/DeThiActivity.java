@@ -1,11 +1,8 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,51 +11,56 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiDaiSo;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiHinhHoc;
+import com.thud.huynhnhu.luyenthitoan.adapter.ExamAdapter;
+import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
+import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.Result;
+import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class LuyenThiActivity extends BaseActivity
+public class DeThiActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityInterface {
-    private TabLayout tabLayout;
     private ViewPager viewPager;
     private LayoutInflater mlayoutInflater;
+    private ListView lst_view_dethi;
+    private ArrayList<Exam> arr_exam = new ArrayList<>();
+    private ExamAdapter examAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_luyenthi);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_luyenthi);
+        setContentView(R.layout.activity_dethi);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dethi);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_luyenthi);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_dethi);
         navigationView.setNavigationItemSelectedListener(this);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_luyenthi);
-        setupViewPager(viewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_dethi);
 
         initFlags();
 
         initControl();
 
-        tabLayout.setupWithViewPager(viewPager);
+        getData();
+
         setEventForControl();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -115,8 +117,8 @@ public class LuyenThiActivity extends BaseActivity
 
     @Override
     public void initControl() {
-        tabLayout = (TabLayout) findViewById(R.id.tabs_luyenthi);
-        mlayoutInflater = LayoutInflater.from(LuyenThiActivity.this);
+        mlayoutInflater = LayoutInflater.from(DeThiActivity.this);
+        lst_view_dethi = (ListView) findViewById(R.id.lv_daiso);
     }
 
     @Override
@@ -126,7 +128,7 @@ public class LuyenThiActivity extends BaseActivity
 
     @Override
     public void getData(String... params) {
-
+        new apiGetExam().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
@@ -134,40 +136,28 @@ public class LuyenThiActivity extends BaseActivity
 
     }
 
-    //Set up View Pager and TabLayout
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentLuyenThiDaiSo(), getResources().getString(R.string.tab_daiso));
-        adapter.addFragment(new FragmentLuyenThiHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+    private class apiGetExam extends AsyncTask<String, Void, Result<ArrayList<Exam>>> {
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+        protected Result<ArrayList<Exam>> doInBackground(String... strings){
+            return new ExamDAL(DeThiActivity.this).getAllExamFromLoCal();
         }
 
         @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
+        protected void onPostExecute(Result<ArrayList<Exam>> arrayListResult){
+            super.onPostExecute(arrayListResult);
+            if (arrayListResult.getKey() == ResultStatus.TRUE){
+                arr_exam = arrayListResult.getValue();
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+                if (arr_exam != null){
+                    examAdapter = new ExamAdapter(DeThiActivity.this, arr_exam);
+                    lst_view_dethi.setAdapter(examAdapter);
+                }
+            }
         }
     }
 }
