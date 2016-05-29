@@ -13,12 +13,14 @@ import android.widget.TextView;
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.activities.MainActivity;
 import com.thud.huynhnhu.luyenthitoan.datas.ContentDAL;
+import com.thud.huynhnhu.luyenthitoan.datas.ExamContentDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.AllDAL;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
@@ -74,6 +76,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
             getTopic();
             publishProgress(1);
             getExam();
+            getExamContent();
             publishProgress(2);
             getExample();
             publishProgress(3);
@@ -180,6 +183,18 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getTopic(){
         try {
             Result<ArrayList<Topic>> resultTopic = new TopicDAL(context).getAllTopic();
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get ExamContent
+    private boolean getExamContent(){
+        try {
+            Result<ArrayList<ExamContent>> resultExamContent = new ExamContentDAL(context).getAllExamContent();
             return true;
         }
         catch (Exception e){

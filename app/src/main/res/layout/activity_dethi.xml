@@ -3,27 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout_dethi"
+    android:id="@+id/drawer_layout_dethi_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar_dethi"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ListView
-        android:id="@+id/lv_daiso"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/layout_padding_5"
-        android:paddingRight="@dimen/layout_padding_5"
-        android:paddingTop="@dimen/layout_padding_65"/>
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fra_dethi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/md_white"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_dethi_main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </FrameLayout>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view_dethi"
+        android:id="@+id/nav_dethi"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

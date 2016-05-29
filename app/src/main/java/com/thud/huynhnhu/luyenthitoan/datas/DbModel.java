@@ -5,6 +5,7 @@ import android.database.Cursor;
 
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
 
@@ -108,4 +109,25 @@ public class DbModel {
         return topic;
     }
 
+    /*----------Topic----------*/
+    public static ContentValues getContentValueExamContent(ExamContent examContent){
+        ContentValues examContentDb = new ContentValues();
+        examContentDb.put(ExamContent.ID, examContent.getId());
+        examContentDb.put(ExamContent.ANSWER, examContent.getAnwser());
+        examContentDb.put(ExamContent.QUESTION, examContent.getQuestion());
+        examContentDb.put(ExamContent.EXAMID, examContent.getExamId());
+        examContentDb.put(ExamContent.IMAGE, String.valueOf(examContent.getImage().getUrl()));
+        return examContentDb;
+    }
+
+    public static ExamContent getExamContent(Cursor cursor){
+        ExamContent examContent = new ExamContent();
+        examContent.setId(cursor.getString(cursor.getColumnIndex(ExamContent.ID)));
+        examContent.setAnwser(cursor.getString(cursor.getColumnIndex(ExamContent.ANSWER)));
+        examContent.setQuestion(cursor.getString(cursor.getColumnIndex(ExamContent.QUESTION)));
+        examContent.setExamId(cursor.getString(cursor.getColumnIndex(ExamContent.EXAMID)));
+        examContent.setImg(cursor.getString(cursor.getColumnIndex(ExamContent.IMAGE)));
+
+        return examContent;
+    }
 }

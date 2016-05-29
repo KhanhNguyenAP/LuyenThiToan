@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
@@ -50,6 +51,13 @@ public class DBHelper extends SQLiteOpenHelper {
             Topic.REFERENCESQUESTION + " TEXT, " +
             Topic.IMAGE + " TEXT )";
 
+    public static final String sql_exam_content = "CREATE TABLE IF NOT EXISTS " + ExamContent.TABLENAME + "(" +
+            ExamContent.ID + " TEXT PRIMARY KEY, " +
+            ExamContent.ANSWER + " TEXT, " +
+            ExamContent.QUESTION + " TEXT, " +
+            ExamContent.EXAMID + " TEXT, " +
+            ExamContent.IMAGE + " TEXT )";
+
     public DBHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         try {
@@ -69,6 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(sql_example);
             db.execSQL(sql_topic);
             db.execSQL(sql_content);
+            db.execSQL(sql_exam_content);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -84,6 +93,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Exam.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Example.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Topic.TABLENAME);
+            db.execSQL("DROP TABLE IF EXISTS " + ExamContent.TABLENAME);
             onCreate(db);
         }
         catch (Exception e){
@@ -101,6 +111,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Exam.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Example.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Topic.TABLENAME);
+            db.execSQL("DROP TABLE IF EXISTS " + ExamContent.TABLENAME);
             onCreate(db);
         }
         catch (Exception e){

@@ -10,6 +10,7 @@
     <dimen name="layout_padding_50">50dp</dimen>
     <dimen name="layout_padding_65">65dp</dimen>
     <dimen name="layout_padding_80">80dp</dimen>
+    <dimen name="layout_padding_100">100dp</dimen>
 
     <dimen name="title_size_16">16sp</dimen>
     <dimen name="title_size_20">20sp</dimen>

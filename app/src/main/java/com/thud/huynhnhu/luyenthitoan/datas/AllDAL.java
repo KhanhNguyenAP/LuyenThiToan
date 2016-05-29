@@ -11,6 +11,7 @@ import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
+import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
@@ -59,9 +60,15 @@ public class AllDAL {
                             result = new ExampleDAL(context).insertExampleFromLocal(examples);
                         }
                         else {
-                            ArrayList<Topic> topics = (ArrayList) object[0];
-                            result = new TopicDAL(context).insertTopicFromLocal(topics);
-                        }//end Example
+                            if (firstObject != null && firstObject instanceof ExamContent){
+                                ArrayList<ExamContent> examContents = (ArrayList) object[0];
+                                result = new ExamContentDAL(context).insertExamContentFromLocal(examContents);
+                            }
+                            else {
+                                ArrayList<Topic> topics = (ArrayList) object[0];
+                                result = new TopicDAL(context).insertTopicFromLocal(topics);
+                            }//end Example
+                        }//end ExamContent
                     }//end Exam
                 } // end Content
             }

@@ -1,71 +1,69 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.adapter.ExamAdapter;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDeThi;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
+import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
 public class DeThiActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityInterface {
-    private ViewPager viewPager;
-    private LayoutInflater mlayoutInflater;
-    private ListView lst_view_dethi;
-    private ArrayList<Exam> arr_exam = new ArrayList<>();
-    private ExamAdapter examAdapter;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    ActionBar actionBar;
+    android.app.FragmentManager fragmentManager = this.getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dethi);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dethi);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_dethi_main);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_dethi_main);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_dethi);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_dethi);
         navigationView.setNavigationItemSelectedListener(this);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_dethi);
-
-        initFlags();
-
-        initControl();
-
-        getData();
-
-        setEventForControl();
+        FragmentDeThi fragDeThi = (FragmentDeThi) getFragmentManager().findFragmentById(R.id.fra_dethi);
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragDeThi = new FragmentDeThi();
+        fragmentTransaction.replace(R.id.fra_dethi, fragDeThi, "De Thi");
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     @Override
@@ -117,47 +115,18 @@ public class DeThiActivity extends BaseActivity
 
     @Override
     public void initControl() {
-        mlayoutInflater = LayoutInflater.from(DeThiActivity.this);
-        lst_view_dethi = (ListView) findViewById(R.id.lv_daiso);
     }
 
     @Override
     public void setEventForControl() {
-
     }
 
     @Override
     public void getData(String... params) {
-        new apiGetExam().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
     public void setData() {
 
-    }
-
-    private class apiGetExam extends AsyncTask<String, Void, Result<ArrayList<Exam>>> {
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Result<ArrayList<Exam>> doInBackground(String... strings){
-            return new ExamDAL(DeThiActivity.this).getAllExamFromLoCal();
-        }
-
-        @Override
-        protected void onPostExecute(Result<ArrayList<Exam>> arrayListResult){
-            super.onPostExecute(arrayListResult);
-            if (arrayListResult.getKey() == ResultStatus.TRUE){
-                arr_exam = arrayListResult.getValue();
-
-                if (arr_exam != null){
-                    examAdapter = new ExamAdapter(DeThiActivity.this, arr_exam);
-                    lst_view_dethi.setAdapter(examAdapter);
-                }
-            }
-        }
     }
 }

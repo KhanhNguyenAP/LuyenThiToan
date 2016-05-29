@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white"
+    android:paddingTop="@dimen/layout_padding_65"
+    android:paddingLeft="@dimen/layout_padding_5"
+    android:paddingRight="@dimen/layout_padding_5"
+    android:focusable="false">
+
+    <!-- Định nghĩa-->
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="@dimen/title_size_20"/>
+
+    <io.github.kexanie.library.MathView
+        android:id="@+id/mathview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/layout_padding_5"
+        auto:engine="MathJax">
+    </io.github.kexanie.library.MathView>
+
+    <LinearLayout
+        android:id="@+id/linear_show_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/layout_padding_100"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/md_white"
+            android:textStyle="bold"
+            android:text="@string/btn_back"/>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/layout_padding_100"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/md_white"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/layout_padding_10"
+            android:text="@string/btn_next"/>
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="@dimen/layout_padding_100"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:paddingLeft="@dimen/layout_padding_5"
+            android:textColor="@color/md_white"
+            android:textStyle="bold"
+            android:text="@string/btn_check"/>
+    </LinearLayout>
+</LinearLayout>

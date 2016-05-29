@@ -44,4 +44,11 @@
     <string name="app_version_title">Version: </string>
     <string name="app_version">1.0</string>
     <string name="close">Đóng</string>
+    <string name="cau">Câu </string>
+
+    <!--button-->
+
+    <string name="btn_back">BACK</string>
+    <string name="btn_next">NEXT</string>
+    <string name="btn_check">CHECK</string>
 </resources>
