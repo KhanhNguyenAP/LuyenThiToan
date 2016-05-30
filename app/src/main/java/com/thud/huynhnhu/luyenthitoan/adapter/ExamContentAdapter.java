@@ -44,8 +44,8 @@ public class ExamContentAdapter extends ArrayAdapter<ExamContent> {
         final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title);
         final MathView mathview = (MathView) rowView.findViewById(R.id.mathview);
 
-        text_view_title.setText(""+R.string.cau + " " + position + " : ");
-        mathview.setText(values.get(position).getQuestion());
+        text_view_title.setText("Câu " + (position+1) + " : " + values.get(position).getQuestion());
+        mathview.setText(values.get(position).getAnwser());
 
         return rowView;
     }

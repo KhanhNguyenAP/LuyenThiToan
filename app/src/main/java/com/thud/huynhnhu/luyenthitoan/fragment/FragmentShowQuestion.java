@@ -1,8 +1,10 @@
 package com.thud.huynhnhu.luyenthitoan.fragment;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,10 @@ import java.util.ArrayList;
 
 import io.github.kexanie.library.MathView;
 
-public class FragmentShowExamContent extends Fragment implements ActivityInterface{
+/**
+ * Created by KhanhNguyen on 5/29/2016.
+ */
+public class FragmentShowQuestion extends Fragment implements ActivityInterface {
     private View view;
     private TextView text_view_title;
     private MathView mathview;
@@ -46,11 +51,14 @@ public class FragmentShowExamContent extends Fragment implements ActivityInterfa
         setEventForControl();
 
         getData();
+
+        setValue();
     }
 
     @Override
     public void initFlags() {
         Flags.vitri_cauhoi = 1;
+        Flags.main_dethi = false;
     }
 
     @Override
@@ -65,7 +73,26 @@ public class FragmentShowExamContent extends Fragment implements ActivityInterfa
 
     @Override
     public void setEventForControl() {
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedNext();
+            }
+        });
 
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedBack();
+            }
+        });
+
+        btn_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAnwer();
+            }
+        });
     }
 
     @Override
@@ -75,8 +102,8 @@ public class FragmentShowExamContent extends Fragment implements ActivityInterfa
 
     @Override
     public void setData() {
-        text_view_title.setText(""+R.string.cau + " " + Flags.vitri_cauhoi + " : ");
-        mathview.setText(arr_ExampleContent.get(Flags.vitri_cauhoi).getQuestion());
+        text_view_title.setText("Câu " + Flags.vitri_cauhoi + " : ");
+        mathview.setText(arr_ExampleContent.get(Flags.vitri_cauhoi -1).getQuestion());
     }
 
 
@@ -102,4 +129,59 @@ public class FragmentShowExamContent extends Fragment implements ActivityInterfa
         }
     }
 
+    private void setValue(){
+        if (arr_ExampleContent.size() == 1){
+            btn_check.setVisibility(View.VISIBLE);
+
+            btn_back.setVisibility(View.GONE);
+            btn_next.setVisibility(View.GONE);
+        }
+        else{
+            if (Flags.vitri_cauhoi == 1){
+                btn_next.setVisibility(View.VISIBLE);
+
+                btn_back.setVisibility(View.GONE);
+                btn_check.setVisibility(View.GONE);
+            }
+
+            if (Flags.vitri_cauhoi > 1 && Flags.vitri_cauhoi < arr_ExampleContent.size()){
+                btn_back.setVisibility(View.VISIBLE);
+                btn_next.setVisibility(View.VISIBLE);
+
+                btn_check.setVisibility(View.GONE);
+            }
+
+            if (Flags.vitri_cauhoi == arr_ExampleContent.size()){
+                btn_check.setVisibility(View.VISIBLE);
+                btn_back.setVisibility(View.VISIBLE);
+
+                btn_next.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    protected void selectedNext(){
+        Flags.vitri_cauhoi += 1;
+
+        setValue();
+
+        setData();
+    }
+
+    protected void selectedBack(){
+        Flags.vitri_cauhoi -= 1;
+
+        setValue();
+
+        setData();
+    }
+
+    private void showAnwer(){
+        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        Fragment fragShowAnwer = new FragmentShowQuestionAnswer();
+        fragmentTransaction.replace(R.id.fra_dethi, fragShowAnwer, "Tra Loi");
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
+    }
 }

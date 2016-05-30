@@ -51,6 +51,7 @@ public class FragmentDeThi extends Fragment implements ActivityInterface {
     }
     @Override
     public void initFlags() {
+        Flags.main_dethi = true;
     }
 
     @Override
@@ -107,7 +108,7 @@ public class FragmentDeThi extends Fragment implements ActivityInterface {
     public void showDeTail(){
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        Fragment fragShow = new FragmentShowQuection();
+        Fragment fragShow = new FragmentShowQuestion();
         fragmentTransaction.replace(R.id.fra_dethi, fragShow, "De thi");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();

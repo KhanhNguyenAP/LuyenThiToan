@@ -20,12 +20,20 @@
             android:name=".activities.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".activities.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/kienthuccanban"
@@ -54,11 +62,6 @@
         <activity
             android:name=".activities.DeThiActivity"
             android:label="@string/dethimau"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".activities.HomeActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity

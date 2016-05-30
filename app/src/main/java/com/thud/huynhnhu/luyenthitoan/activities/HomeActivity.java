@@ -1,5 +1,6 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,7 @@ import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
+import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
@@ -86,20 +88,31 @@ public class HomeActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        Intent intent = null;
         if (id == R.id.left_trangchu) {
-            // Handle the camera action
+            intent = new Intent(HomeActivity.this, HomeActivity.class);
+
         } else if (id == R.id.left_kienthuccanban) {
+            intent = new Intent(HomeActivity.this, MainActivity.class);
 
         } else if (id == R.id.left_luyenthi) {
+            intent = new Intent(HomeActivity.this, LuyenThiActivity.class);
 
         } else if (id == R.id.left_dethimau) {
+            intent = new Intent(HomeActivity.this, DeThiActivity.class);
 
         } else if (id == R.id.left_maytinh) {
+            intent = new Intent(HomeActivity.this, CalculatorActivity.class);
 
         } else if (id == R.id.left_thongtinungdung) {
+            intent = new Intent(HomeActivity.this, ShowInfoAppActivity.class);
 
         } else if (id == R.id.left_thoat){
-
+            finish();
+            System.exit(0);
+        }
+        if (intent!=null){
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

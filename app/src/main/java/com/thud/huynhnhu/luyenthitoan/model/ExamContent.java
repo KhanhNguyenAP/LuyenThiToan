@@ -9,7 +9,7 @@ import com.parse.ParseFile;
 public class ExamContent {
     public static final String TABLENAME = "examContent";
     public static final String ID = "id";
-    public static final String ANSWER = "anwser";
+    public static final String ANSWER = "answer";
     public static final String QUESTION = "question";
     public static final String EXAMID = "examId";
     public static final String IMAGE = "image";
@@ -28,7 +28,7 @@ public class ExamContent {
     @SerializedName("objectId")
     private String id;
 
-    @SerializedName("anwser")
+    @SerializedName("answer")
     private String anwser;
 
     @SerializedName("question")

@@ -1,7 +1,8 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/layout_padding_65">
     <ListView
         android:id="@+id/lv_full"
         android:layout_width="match_parent"

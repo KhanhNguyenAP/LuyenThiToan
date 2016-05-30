@@ -27,6 +27,7 @@ import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
+import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
@@ -63,7 +64,11 @@ public class DeThiActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (Flags.main_dethi == true){
+            finish();
+        }
+
+        showListExam(fragmentManager);
     }
 
     @Override
@@ -129,4 +134,24 @@ public class DeThiActivity extends BaseActivity
     public void setData() {
 
     }
+
+    public static void showListExam(android.app.FragmentManager fragmentManager){
+        try{
+            android.app.Fragment fragmentRangeList =
+                    fragmentManager.findFragmentByTag(Def.TAG_DETHI);
+
+            if(fragmentRangeList != null){
+                fragmentManager.beginTransaction().remove(fragmentRangeList).commitAllowingStateLoss();
+            }
+
+            fragmentRangeList = new FragmentDeThi();
+            fragmentManager.beginTransaction()
+                    .add(R.id.fra_dethi, fragmentRangeList, Def.TAG_DETHI)
+                    .commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }//--end showRangeList
 }
