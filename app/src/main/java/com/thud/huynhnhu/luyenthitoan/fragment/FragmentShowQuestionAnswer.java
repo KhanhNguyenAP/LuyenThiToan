@@ -43,8 +43,8 @@ public class FragmentShowQuestionAnswer extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.item_list_view_full, container, false);
-        lv_list_info = (ListView) view.findViewById(R.id.lv_full);
+        View view = inflater.inflate(R.layout.item_list_view_fragment, container, false);
+        lv_list_info = (ListView) view.findViewById(R.id.lst_list_view);
 
         Flags.main_dethi = false;
         return view;

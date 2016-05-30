@@ -3,6 +3,8 @@ package com.thud.huynhnhu.luyenthitoan.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,6 +56,7 @@ public class DeThiActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_dethi);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(3).setChecked(true);
 
         FragmentDeThi fragDeThi = (FragmentDeThi) getFragmentManager().findFragmentById(R.id.fra_dethi);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -92,24 +96,35 @@ public class DeThiActivity extends BaseActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Intent intent = null;
 
         if (id == R.id.left_trangchu) {
-            // Handle the camera action
+            intent = new Intent(DeThiActivity.this, HomeActivity.class);
+
         } else if (id == R.id.left_kienthuccanban) {
+            intent = new Intent(DeThiActivity.this, MainActivity.class);
 
         } else if (id == R.id.left_luyenthi) {
+            intent = new Intent(DeThiActivity.this, LuyenThiActivity.class);
 
         } else if (id == R.id.left_dethimau) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi_main);
+            drawer.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.left_maytinh) {
+            intent = new Intent(DeThiActivity.this, CalculatorActivity.class);
 
         } else if (id == R.id.left_thongtinungdung) {
+            intent = new Intent(DeThiActivity.this, ShowInfoAppActivity.class);
 
         } else if (id == R.id.left_thoat){
-
+           showDialog();
+        }
+        if (intent!=null){
+            startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -154,4 +169,26 @@ public class DeThiActivity extends BaseActivity
         }
 
     }//--end showRangeList
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to close this application ?")
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(R.string.close_app);
+        alert.show();
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,14 +38,15 @@ public class HomeActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dethi);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_dethi);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_home);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_dethi);
 
@@ -58,12 +61,8 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+        showDialog();
     }
 
     @Override
@@ -87,10 +86,10 @@ public class HomeActivity extends BaseActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         Intent intent = null;
         if (id == R.id.left_trangchu) {
-            intent = new Intent(HomeActivity.this, HomeActivity.class);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home);
+            drawer.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.left_kienthuccanban) {
             intent = new Intent(HomeActivity.this, MainActivity.class);
@@ -108,14 +107,13 @@ public class HomeActivity extends BaseActivity
             intent = new Intent(HomeActivity.this, ShowInfoAppActivity.class);
 
         } else if (id == R.id.left_thoat){
-            finish();
-            System.exit(0);
+            showDialog();
         }
-        if (intent!=null){
+        if (intent != null){
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -154,5 +152,27 @@ public class HomeActivity extends BaseActivity
         protected Result<ArrayList<Exam>> doInBackground(String... strings){
             return new ExamDAL(HomeActivity.this).getAllExamFromLoCal();
         }
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to close this application ?")
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(R.string.close_app);
+        alert.show();
     }
 }

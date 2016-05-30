@@ -1,5 +1,6 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(1).setChecked(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -87,19 +90,25 @@ public class MainActivity extends BaseActivity
         Intent intent = null;
         if (id == R.id.left_trangchu) {
             intent = new Intent(MainActivity.this, HomeActivity.class);
+
         } else if (id == R.id.left_kienthuccanban) {
-            intent = new Intent(MainActivity.this, MainActivity.class);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+
         } else if (id == R.id.left_luyenthi) {
             intent = new Intent(MainActivity.this, LuyenThiActivity.class);
+
         } else if (id == R.id.left_dethimau) {
             intent = new Intent(MainActivity.this, DeThiActivity.class);
+
         } else if (id == R.id.left_maytinh) {
             intent = new Intent(MainActivity.this, CalculatorActivity.class);
+
         } else if (id == R.id.left_thongtinungdung) {
             intent = new Intent(MainActivity.this, ShowInfoAppActivity.class);
+
         } else if (id == R.id.left_thoat){
-            finish();
-            System.exit(0);
+            showDialog();
         }
         if (intent!=null){
             startActivity(intent);
@@ -170,5 +179,27 @@ public class MainActivity extends BaseActivity
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to close this application ?")
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(R.string.close_app);
+        alert.show();
     }
 }

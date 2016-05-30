@@ -47,8 +47,12 @@
     <string name="cau">Câu </string>
 
     <!--button-->
-
     <string name="btn_back">BACK</string>
     <string name="btn_next">NEXT</string>
     <string name="btn_check">CHECK</string>
+
+    <!--dialog exit app-->
+    <string name="close_app">Bạn có muốn thoát ứng dụng ?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
 </resources>
