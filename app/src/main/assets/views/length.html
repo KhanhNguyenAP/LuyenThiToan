@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Công cụ toán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="../libs/angular_material/css/angular-material.min.css">
+    <link rel="stylesheet" href="../libs/css/style.css">
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="../libs/angular_material/js/angular.min.js"></script>
+    <script src="../libs/angular_material/js/angular-animate.min.js"></script>
+    <script src="../libs/angular_material/js/angular-aria.min.js"></script>
+    <script src="../libs/angular_material/js/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../libs/angular_material/js/angular-material.min.js"></script>
+    <script src="../libs/angular/module.js"></script>
+    <script src="../libs/angular/lengthCtrl.js"></script>
+    <!--Algebrite library-->
+    <script src="../libs/algebrite/dist/algebrite.bundle-for-browser.js"></script>
+    <!-- Copyright (c) 2010-2015 The MathJax Consortium -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+    <script type="text/javascript"
+            src="../libs/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+</head>
+<body>
+<div ng-app="AppModule" ng-controller="lengthCtrl" layout="column" style="height:500px;" ng-cloak>
+    <form id="frmLength">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="menu" href="../index.html">
+                    <img src="../images/icons/back.png">
+                </md-button>
+                <h3>
+                    <span>Tính khoảng cách</span>
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding" style="min-height: 400px">
+            <h3 style="margin: 10px 0; text-align: center">Tính khoảng cách giữa 2 điểm</h3>
+            <table width="100%" style="text-align: left; font-weight: bold; vertical-align: top; margin-bottom: -45px">
+                <tr>
+                    <td colspan="6">
+                        <md-input-container class="md-block">
+                            <label>Chọn hệ toạ độ:</label>
+                            <md-select tabindex="1" ng-model="heToaDo" required ng-change="clearInput()">
+                                <md-option ng-value="type.id" ng-repeat="type in types">{{ type.name }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="color: #949494;">
+                        Nhập toạ độ:
+                    </td>
+                    <td colspan="2">
+                        <section layout="row" layout-sm="column" layout-wrap style="margin-top: -20px; float: right">
+                            <md-button class="md-fab md-mini" aria-label="Length" type="submit">
+                                <img class="material-icons" src="../images/icons/ruler.png">
+                            </md-button>
+                        </section>
+                    </td>
+                </tr>
+                <tr>
+                    <td>A(</td>
+                    <td>
+                        <md-input-container>
+                            <label>$X_A$</label>
+                            <input id="paramAx" type="number" required name="paramAx" ng-model="paramAx" ng-change="input()" step="0.00001" tabindex="2">
+                            <div ng-messages="form.paramAx.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td> $;$ </td>
+                    <td>
+                        <md-input-container>
+                            <label>$Y_A$</label>
+                            <input id="paramAy" type="number" required name="paramAy" ng-model="paramAy" ng-change="input()" step="0.00001" tabindex="3">
+                            <div ng-messages="form.paramAy.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td ng-show="heToaDo == 'Oxyz'"> $;$ </td>
+                    <td ng-show="heToaDo == 'Oxyz'">
+                        <md-input-container>
+                            <label>$Z_A$</label>
+                            <input id="paramAz" type="number" required name="paramAz" ng-model="paramAz" ng-change="input()" step="0.00001" tabindex="4">
+                            <div ng-messages="form.paramAz.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td>)</td>
+                </tr>
+                <tr>
+                    <td>B(</td>
+                    <td>
+                        <md-input-container class="tr-length">
+                            <label>$X_B$</label>
+                            <input id="paramBx" type="number" required name="paramBx" ng-model="paramBx" ng-change="input()" step="0.00001" tabindex="5">
+                            <div ng-messages="form.paramBx.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td> $;$ </td>
+                    <td>
+                        <md-input-container class="tr-length">
+                            <label>$Y_B$</label>
+                            <input id="paramBy" type="number" required name="paramBy" ng-model="paramBy" ng-change="input()" step="0.00001" tabindex="6">
+                            <div ng-messages="form.paramBy.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td ng-show="heToaDo == 'Oxyz'"> $;$ </td>
+                    <td ng-show="heToaDo == 'Oxyz'">
+                        <md-input-container class="tr-length">
+                            <label>$Z_B$</label>
+                            <input id="paramBz" type="number" required name="paramBz" ng-model="paramBz" ng-change="input()" step="0.00001" tabindex="7">
+                            <div ng-messages="form.paramBz.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td>)</td>
+                </tr>
+            </table>
+            <md-list ng-cloak ng-show="computed" style="margin: 24px 0 0 -16px;">
+                <md-divider></md-divider>
+                <md-list-item><h3>Khoảng cách A đến B là: </h3></md-list-item>
+                <md-list-item>
+                    $\begin{align}
+                    AB & = |\overrightarrow{AB}| \\
+                    & = \sqrt{(X_A - X_B)^2 + (Y_A - Y_B)^2} \\
+                    \end{align}$
+                </md-list-item>
+                <md-list-item>
+                    &emsp;&emsp;<span mathjax-bind="showEquation"></span>
+                </md-list-item>
+                <md-list-item>
+                    Vậy &nbsp; $AB = $&nbsp;<span mathjax-bind="distanceAB"></span>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </form>
+</div>
+</body>
+</html>

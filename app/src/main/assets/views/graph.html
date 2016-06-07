@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Công cụ toán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="../libs/angular_material/css/angular-material.min.css">
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="../libs/angular_material/js/angular.min.js"></script>
+    <script src="../libs/angular_material/js/angular-animate.min.js"></script>
+    <script src="../libs/angular_material/js/angular-aria.min.js"></script>
+    <script src="../libs/angular_material/js/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../libs/angular_material/js/angular-material.min.js"></script>
+    <script src="../libs/angular/module.js"></script>
+    <script src="../libs/angular/graphCtrl.js"></script>
+    <script src="../libs/mathjs/math.min.js"></script>
+    <!-- load http://maurizzzio.github.io/function-plot/ -->
+    <script src="../libs/mathjs/d3.min.js"></script>
+    <script src="../libs/mathjs/function-plot@1.14.0.js"></script>
+    <!--Algebrite library-->
+    <script src="../libs/algebrite/dist/algebrite.bundle-for-browser.js"></script>
+    <!-- Copyright (c) 2010-2015 The MathJax Consortium -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+    <script type="text/javascript"
+            src="../libs/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+</head>
+<body>
+<div ng-app="AppModule" ng-controller="GraphCtrl" layout="column" style="height:500px;" ng-cloak>
+    <form id="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="menu" href="../index.html">
+                    <img src="../images/icons/back.png">
+                </md-button>
+                <h3>
+                    <span>Vẽ đồ thị hàm số</span>
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding">
+            <h3 style="margin: 10px 0; text-align: center">Vẽ đồ thị hàm số</h3>
+            <table width="100%" style="text-align: left; font-weight: bold; vertical-align: top; margin-bottom: -45px">
+                <tr>
+                    <td colspan="4">
+                        <md-input-container class="md-block">
+                            <label>Chọn loại hàm số:</label>
+                            <md-select ng-model="algebraType" required ng-change="clearInput()">
+                                <md-option ng-value="type.id" ng-repeat="type in types">{{ type.name }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="color: #949494;">
+                        Nhập hàm số:
+                    </td>
+                </tr>
+                <tr>
+                    <td ng-show="algebraType != 'bac1'">
+                        <md-input-container class="td-param">
+                            <label>Số a</label>
+                            <input id="paramA" type="number" step="0.00001" required name="paramA" ng-model="paramA" ng-change="input()">
+                            <div ng-messages="form.paramA.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="td-param">
+                            <label>Số b</label>
+                            <input id="paramB" type="number" step="0.00001" required name="paramB" ng-model="paramB" ng-change="input()">
+                            <div ng-messages="form.paramB.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="td-param">
+                            <label>Số c</label>
+                            <input id="paramC" type="number" step="0.00001" required name="paramC" ng-model="paramC" ng-change="input()">
+                            <div ng-messages="form.paramC.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td ng-show="algebraType == 'bac3'">
+                        <md-input-container class="td-param">
+                            <label>Số d</label>
+                            <input id="paramD" type="number" step="0.00001" required name="paramD" ng-model="paramD" ng-change="input()">
+                            <div ng-messages="form.paramD.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <section layout="row" layout-sm="column" layout-wrap style="margin-top: -40px;">
+                            <md-button class="md-fab md-mini" aria-label="Draw" type="submit" id="btnEq">
+                                <img class="material-icons" src="../images/icons/draw.png">
+                            </md-button>
+                        </section>
+                    </td>
+                </tr>
+            </table>
+            <md-divider></md-divider>
+            <md-content ng-show="computed">
+                <md-list ng-cloak>
+                    <strong>Khảo sát hàm số: </strong>
+                    <md-list-item>
+                        $y = $<span mathjax-bind="equation"></span>
+                        <md-input-container style="margin-top: -10px; padding: 0;" ng-show="false">
+                            <input id="eq" required readonly name="equation" ng-model="equation">
+                            <div ng-messages="form.equation.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </md-list-item>
+                    <md-list-item>
+                        <b>- TXĐ</b>: D = <span mathjax-bind="TXD"></span>
+                    </md-list-item>
+                    <md-list-item ng-show="algebraType != 'bac1'">
+                        <b>- Đạo hàm</b>: &nbsp; $y' = $<span mathjax-bind="dx"></span>
+                    </md-list-item>
+                    <md-list-item ng-show="algebraType != 'bac1'">
+                        $y' = 0 \Leftrightarrow $ <span mathjax-bind="dx"></span> $ = 0$
+                    </md-list-item>
+                    <md-list-item ng-show="algebraType != 'bac1'">
+                        $\Leftrightarrow$ &nbsp;<span mathjax-bind="valueDx"></span>
+                        <span ng-show="valueDx == ''">Vô nghiệm</span>
+                    </md-list-item>
+                    <md-list-item>
+                        <b>- Điểm đặc biệt</b>:
+                    </md-list-item>
+                    <md-list-item>
+                        <span mathjax-bind="pointOx"></span>
+                        <span mathjax-bind="pointOy"></span>
+                    </md-list-item>
+                    <md-list-item ng-show="valueDx != '' && algebraType != 'bac1'">
+                        <b>- Cực trị</b>:
+                    </md-list-item>
+                    <md-list-item ng-show="valueDx != ''">
+                        <span ng-repeat="point in special" mathjax-bind="point"></span>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+            <h4 colspan="3" style="color: #373737;">Đồ thị của hàm số</h4>
+            <md-divider></md-divider>
+            <div style="overflow: auto; margin-top: 10px;">
+                <div id="plot"></div>
+            </div>
+        </md-content>
+    </form>
+    <script src="../libs/js/math.js"></script>
+</div>
+</body>
+</html>

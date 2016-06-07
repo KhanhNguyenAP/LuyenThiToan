@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Công cụ toán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="../libs/angular_material/css/angular-material.min.css">
+    <link rel="stylesheet" href="../libs/css/style.css">
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="../libs/angular_material/js/angular.min.js"></script>
+    <script src="../libs/angular_material/js/angular-animate.min.js"></script>
+    <script src="../libs/angular_material/js/angular-aria.min.js"></script>
+    <script src="../libs/angular_material/js/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../libs/angular_material/js/angular-material.min.js"></script>
+    <script src="../libs/angular/module.js"></script>
+    <script src="../libs/angular/derivativeCtrl.js"></script>
+    <!--Algebrite library-->
+    <script src="../libs/algebrite/dist/algebrite.bundle-for-browser.js"></script>
+    <!-- Copyright (c) 2010-2015 The MathJax Consortium -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+    <script type="text/javascript"
+            src="../libs/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+</head>
+<body>
+<div ng-app="AppModule" ng-controller="directiveCtrl" layout="column" style="height:500px;" ng-cloak>
+    <form id="frmDirective">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="menu" href="../index.html">
+                    <img src="../images/icons/back.png">
+                </md-button>
+                <h3>
+                    <span>Tính đạo hàm</span>
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding" style="min-height: 400px">
+            <h3 style="margin: 10px 0; text-align: center">Tính đạo hàm của hàm số $f(x)$</h3>
+            <table width="100%" style="text-align: left; font-weight: bold; vertical-align: top; margin-bottom: -45px">
+                <tr>
+                    <td colspan="2" style="color: #949494;">
+                        <md-input-container>
+                            <label>Nhập hàm số:</label>
+                            <input id="paramFx" required name="paramFx" ng-model="paramFx" ng-change="input()">
+                            <div ng-messages="form.paramFx.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <section layout="row" layout-sm="column" layout-wrap style="margin-top: -20px;">
+                            <md-button class="md-fab md-mini" aria-label="Directive" type="submit">
+                                <img class="material-icons" src="../images/icons/calculator.png">
+                            </md-button>
+                        </section>
+                    </td>
+                </tr>
+                <tr ng-show="paramFx">
+                    <td>
+                        $f(x) = $ <span mathjax-bind="paramFx"></span>
+                    </td>
+                </tr>
+            </table>
+            <md-list ng-cloak ng-show="computed" style="margin: 24px 0 0 -16px;">
+                <md-list-item><h3>Đạo hàm:</h3></md-list-item>
+                <md-list-item>
+                    <span mathjax-bind="resultText"></span>
+                </md-list-item>
+                <md-list-item>
+                    Vậy: $f'(x) = $ &nbsp;<span mathjax-bind="res"></span>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </form>
+</div>
+</body>
+</html>

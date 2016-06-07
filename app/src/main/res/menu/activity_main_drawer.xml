@@ -4,23 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/left_trangchu"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/trangchu" />
         <item
             android:id="@+id/left_kienthuccanban"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/basic"
             android:title="@string/kienthuccanban" />
         <item
             android:id="@+id/left_luyenthi"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/exam"
             android:title="@string/luyenthi" />
         <item
             android:id="@+id/left_dethimau"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/exams"
             android:title="@string/dethimau" />
         <item
             android:id="@+id/left_maytinh"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/calculator"
             android:title="@string/maytinh" />
     </group>
 
@@ -28,11 +28,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/left_thongtinungdung"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/info"
             android:title="@string/thongtinungdung" />
         <item
             android:id="@+id/left_thoat"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/out"
             android:title="@string/thoat" />
     </group>
 </menu>

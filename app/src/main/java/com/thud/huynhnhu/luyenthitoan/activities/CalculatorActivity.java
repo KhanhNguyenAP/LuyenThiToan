@@ -8,7 +8,7 @@ import android.webkit.WebViewClient;
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 
-public class CalculatorActivity extends Activity
+public class CalculatorActivity extends BaseActivity
         implements ActivityInterface {
     private WebView webView;
 
@@ -38,7 +38,8 @@ public class CalculatorActivity extends Activity
         webView = (WebView) findViewById(R.id.web_view);
         webView.setWebViewClient(new MyWebViewClient());
 
-        String url = "http://luyenthitoan.esy.es";
+//        String url = "http://luyenthitoan.esy.es";
+        String url = "file:///android_asset/index.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
     }
