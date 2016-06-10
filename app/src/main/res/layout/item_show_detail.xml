@@ -22,7 +22,7 @@
     <io.github.kexanie.library.MathView
         android:id="@+id/mathview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/layout_padding_5"
         auto:engine="MathJax">
     </io.github.kexanie.library.MathView>

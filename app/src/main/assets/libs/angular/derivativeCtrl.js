@@ -9,6 +9,7 @@ app.controller('directiveCtrl', function($scope) {
     document.getElementById('frmDirective').onsubmit = function (event) {
         $scope.computeDirective();
         event.preventDefault();
+        document.getElementById('paramFx').blur();
     };
 
     $scope.input = function(){

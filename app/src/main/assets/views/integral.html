@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Công cụ toán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="../libs/angular_material/css/angular-material.min.css">
+    <link rel="stylesheet" href="../libs/css/style.css">
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="../libs/angular_material/js/angular.min.js"></script>
+    <script src="../libs/angular_material/js/angular-animate.min.js"></script>
+    <script src="../libs/angular_material/js/angular-aria.min.js"></script>
+    <script src="../libs/angular_material/js/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../libs/angular_material/js/angular-material.min.js"></script>
+    <script src="../libs/angular/module.js"></script>
+    <script src="../libs/angular/integralCtrl.js"></script>
+    <!--Algebrite library-->
+    <script src="../libs/algebrite/dist/algebrite.bundle-for-browser.js"></script>
+    <!-- Copyright (c) 2010-2015 The MathJax Consortium -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+    <script type="text/javascript"
+            src="../libs/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+</head>
+<body>
+<div ng-app="AppModule" ng-controller="integralCtrl" layout="column" style="height:500px;" ng-cloak>
+    <form id="frmIntegral">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="menu" href="../index.html">
+                    <img src="../images/icons/back.png">
+                </md-button>
+                <h3>
+                    <span>Tính tích phân</span>
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding" style="min-height: 400px">
+            <h3 style="margin: 10px 0; text-align: center">Tính tích phân của hàm số $f(x)$</h3>
+            <md-list>
+                <md-list-item>
+                    <md-input-container class="md-block" style="width: 100%">
+                        <label>Loại tích phân:</label>
+                        <md-select ng-model="integralType" ng-change="clearInput()" required tabindex="1">
+                            <md-option ng-value="type.id" ng-repeat="type in types">{{ type.name }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </md-list-item>
+                <md-list-item ng-show="integralType=='xacdinh'">
+                    <md-input-container md-no-float class="integralParam">
+                        <input id="paramA" required name="paramA" ng-model="paramA" ng-change="input()" placeholder="Cận a:" type="number" step="0.0001" tabindex="3">
+                        <div ng-messages="form.paramA.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </md-list-item>
+                <md-list-item>
+                    <table width="100%" style="text-align: left; font-weight: bold; vertical-align: top; margin-bottom: -45px">
+                        <tr>
+                            <td>
+                                $${\displaystyle \int }$$
+                            </td>
+                            <td colspan="3" style="color: #949494;">
+                                <md-input-container style="top: 20px">
+                                    <label>Nhập hàm số:</label>
+                                    <input id="paramFx" required name="paramFx" ng-model="paramFx" ng-change="input()" tabindex="2">
+                                    <div ng-messages="form.paramFx.$error">
+                                        <div ng-message="required">This is required.</div>
+                                    </div>
+                                </md-input-container>
+                            </td>
+                            <td>$dx$</td>
+                            <td>
+                                <section layout="row" layout-sm="column" layout-wrap style="margin-top: -20px;">
+                                    <md-button class="md-fab md-mini" aria-label="Directive" type="submit" tabindex="5">
+                                        <img class="material-icons" src="../images/icons/calculator.png">
+                                    </md-button>
+                                </section>
+                            </td>
+                        </tr>
+                    </table>
+                </md-list-item>
+                <md-list-item ng-show="integralType=='xacdinh'">
+                    <md-input-container md-no-float class="integralParam">
+                        <input id="paramB" required name="paramB" ng-model="paramB" ng-change="input()" placeholder="Cận b:" type="number" step="0.0001"  tabindex="4">
+                        <div ng-messages="form.paramB.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </md-list-item>
+                <md-list-item>
+                    <md-list ng-cloak ng-show="computed" style="margin: 24px 0 0 -16px;">
+                        <md-list-item>
+                            $f(x) = $ <span mathjax-bind="paramFx"></span>
+                        </md-list-item>
+                        <md-list-item><h3>Tích phân:</h3></md-list-item>
+                        <md-list-item>
+                            <span mathjax-bind="resultText"></span>
+                        </md-list-item>
+                        <md-list-item>
+                            <span mathjax-bind="finalRes"></span>
+                        </md-list-item>
+                    </md-list>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </form>
+</div>
+</body>
+</html>

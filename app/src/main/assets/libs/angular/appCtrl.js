@@ -8,7 +8,7 @@ app.controller('AppCtrl', function($scope) {
         { name: 'Phương trình lượng giác', img: 'images/icons/algebra_luonggiac.png', url:'views/prepare.html' },
         { name: 'Số phức', img: 'images/icons/algebra_sophuc.png', url:'views/prepare.html' },
         { name: 'Tính đạo hàm', img: 'images/icons/algebra_daoham.png', url:'views/derivative.html' },
-        { name: 'Tính tích phân', img: 'images/icons/algebra_tichphan.png', url:'views/prepare.html' }
+        { name: 'Tính tích phân', img: 'images/icons/algebra_tichphan.png', url:'views/integral.html' }
     ];
     $scope.hinhhoc = [
         { name: 'Tính độ dài', img: 'images/icons/hh_lenght.png', url:'views/length.html' },

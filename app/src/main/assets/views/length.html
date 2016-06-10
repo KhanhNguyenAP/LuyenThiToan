@@ -17,8 +17,6 @@
     <script src="../libs/angular_material/js/angular-material.min.js"></script>
     <script src="../libs/angular/module.js"></script>
     <script src="../libs/angular/lengthCtrl.js"></script>
-    <!--Algebrite library-->
-    <script src="../libs/algebrite/dist/algebrite.bundle-for-browser.js"></script>
     <!-- Copyright (c) 2010-2015 The MathJax Consortium -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <script type="text/x-mathjax-config">
@@ -138,10 +136,16 @@
             <md-list ng-cloak ng-show="computed" style="margin: 24px 0 0 -16px;">
                 <md-divider></md-divider>
                 <md-list-item><h3>Khoảng cách A đến B là: </h3></md-list-item>
-                <md-list-item>
+                <md-list-item ng-show="heToaDo == 'Oxy'">
                     $\begin{align}
                     AB & = |\overrightarrow{AB}| \\
                     & = \sqrt{(X_A - X_B)^2 + (Y_A - Y_B)^2} \\
+                    \end{align}$
+                </md-list-item>
+                <md-list-item ng-show="heToaDo == 'Oxyz'">
+                    $\begin{align}
+                    AB & = |\overrightarrow{AB}| \\
+                    & = \sqrt{(X_A - X_B)^2 + (Y_A - Y_B)^2+ (Z_A - Z_B)^2} \\
                     \end{align}$
                 </md-list-item>
                 <md-list-item>
