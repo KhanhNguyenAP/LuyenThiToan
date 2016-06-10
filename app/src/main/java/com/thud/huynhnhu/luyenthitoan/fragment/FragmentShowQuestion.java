@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import io.github.kexanie.library.MathView;
 
 /**
- * Created by KhanhNguyen on 5/29/2016.
+ * Created by NhuNhu on 5/29/2016.
  */
 public class FragmentShowQuestion extends Fragment implements ActivityInterface {
     private View view;
@@ -51,8 +51,6 @@ public class FragmentShowQuestion extends Fragment implements ActivityInterface 
         setEventForControl();
 
         getData();
-
-        setValue();
     }
 
     @Override
@@ -104,6 +102,8 @@ public class FragmentShowQuestion extends Fragment implements ActivityInterface 
     public void setData() {
         text_view_title.setText("Câu " + Flags.vitri_cauhoi + " : ");
         mathview.setText(arr_ExampleContent.get(Flags.vitri_cauhoi -1).getQuestion());
+
+        setValue();
     }
 
 
@@ -163,15 +163,11 @@ public class FragmentShowQuestion extends Fragment implements ActivityInterface 
     protected void selectedNext(){
         Flags.vitri_cauhoi += 1;
 
-        setValue();
-
         setData();
     }
 
     protected void selectedBack(){
         Flags.vitri_cauhoi -= 1;
-
-        setValue();
 
         setData();
     }

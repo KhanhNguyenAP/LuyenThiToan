@@ -10,6 +10,7 @@ import android.test.SingleLaunchActivityTestCase;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.utils.async.SaveAllDataFromSerVer;
+import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 /**
  * Created by KhanhNguyen on 5/11/2016.
@@ -29,7 +30,9 @@ public class SplashActivity extends Activity{
         //get share preference
         preference = new Preference(SplashActivity.this);
 
-        new SaveAllDataFromSerVer(SplashActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        if (Flags.synch_data == 0 && Flags.chosen_synch_data == 1){
+            new SaveAllDataFromSerVer(SplashActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override

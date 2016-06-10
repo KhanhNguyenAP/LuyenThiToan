@@ -45,7 +45,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
 
     public SaveAllDataFromSerVer(Context current){
         this.context = current;
-           view = ((Activity) context).getLayoutInflater().inflate(R.layout.custom_progressbar_percent, null);
+        view = ((Activity) context).getLayoutInflater().inflate(R.layout.custom_progressbar_percent, null);
 
         alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(view);
@@ -66,13 +66,9 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     @Override
     protected Result<String> doInBackground(Void... params) {
         try {
-            if (Flags.synch_data == 0){
-                new AllDAL(context).dropAllTable();
-            }
-            else {
-                return new Result<String>(ResultStatus.FALSE, null, context.getResources().getString(R.string.msg_can_not_connect_to_network));
-            }
 
+            new AllDAL(context).dropAllTable();
+            Flags.synch_data = 1;
             getTopic();
             publishProgress(1);
             getExam();

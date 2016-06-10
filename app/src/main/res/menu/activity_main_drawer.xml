@@ -22,8 +22,11 @@
             android:id="@+id/left_maytinh"
             android:icon="@drawable/calculator"
             android:title="@string/maytinh" />
+        <item
+            android:id="@+id/left_taiungdung"
+            android:icon="@drawable/calculator"
+            android:title="@string/taiungdung" />
     </group>
-
 
     <group android:checkableBehavior="single">
         <item

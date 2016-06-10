@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.adapter.ExamAdapter;
@@ -49,6 +51,13 @@ public class DeThiActivity extends BaseActivity
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_dethi_main);
         setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -118,8 +127,15 @@ public class DeThiActivity extends BaseActivity
             intent = new Intent(DeThiActivity.this, ShowInfoAppActivity.class);
 
         } else if (id == R.id.left_thoat){
-           showDialog();
+            showDialog();
         }
+
+        if (id == R.id.left_taiungdung){
+            if (inInternetOn() == true){
+                intent = new Intent(DeThiActivity.this, SplashActivity.class);
+            }
+        }
+
         if (intent!=null){
             startActivity(intent);
         }
@@ -189,6 +205,31 @@ public class DeThiActivity extends BaseActivity
         AlertDialog alert = builder.create();
         alert.setTitle(R.string.close_app);
         alert.show();
+    }
+
+    public final boolean inInternetOn(){
+        ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            // if connected with internet
+            Flags.synch_data = 0;
+            Flags.chosen_synch_data = 1;
+            return true;
+
+        } else if (
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            Flags.synch_data = 1;
+            Flags.chosen_synch_data = 0;
+
+            Toast.makeText(this, "You are not connect to the internet ", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
     }
 
 }

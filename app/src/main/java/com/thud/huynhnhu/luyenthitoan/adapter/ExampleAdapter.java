@@ -43,7 +43,7 @@ public class ExampleAdapter extends ArrayAdapter<Example> {
         final TextView text_view_title = (TextView) rowView.findViewById(R.id.text_view_title);
         final MathView mathview = (MathView) rowView.findViewById(R.id.mathview);
 
-        text_view_title.setText(values.get(position).getAnswer());
+        text_view_title.setText(values.get(position).getQuestion());
         mathview.setText(values.get(position).getAnswer());
 
         return rowView;

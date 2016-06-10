@@ -33,8 +33,8 @@ public class FragmentShowDeTailExample extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.item_list_view, container, false);
-        lv_list_info = (ListView) view.findViewById(R.id.lv_daiso);
+        View view = inflater.inflate(R.layout.item_list_view_full, container, false);
+        lv_list_info = (ListView) view.findViewById(R.id.lv_full);
         return view;
     }
 
