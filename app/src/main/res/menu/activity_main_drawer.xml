@@ -24,7 +24,7 @@
             android:title="@string/maytinh" />
         <item
             android:id="@+id/left_taiungdung"
-            android:icon="@drawable/calculator"
+            android:icon="@drawable/download"
             android:title="@string/taiungdung" />
     </group>
 

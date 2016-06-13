@@ -15,7 +15,7 @@ import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 import java.util.ArrayList;
 
 /**
- * Created by nhu on 5/19/2016.
+ * Created by NhuLe on 5/19/2016.
  */
 public class ExamAdapter extends ArrayAdapter<Exam> {
     private Context context;

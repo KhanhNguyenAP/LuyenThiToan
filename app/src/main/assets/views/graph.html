@@ -42,12 +42,12 @@
                     <img src="../images/icons/back.png">
                 </md-button>
                 <h3>
-                    <span>Vẽ đồ thị hàm số</span>
+                    <span>Khảo sát hàm số</span>
                 </h3>
             </div>
         </md-toolbar>
         <md-content class="md-padding">
-            <h3 style="margin: 10px 0; text-align: center">Vẽ đồ thị hàm số</h3>
+            <h3 style="margin: 10px 0; text-align: center">Khảo sát hàm số</h3>
             <table width="100%" style="text-align: left; font-weight: bold; vertical-align: top; margin-bottom: -45px">
                 <tr>
                     <td colspan="4">
@@ -110,7 +110,7 @@
                     </td>
                 </tr>
             </table>
-            <md-divider></md-divider>
+            <md-divider ng-show="computed"></md-divider>
             <md-content ng-show="computed">
                 <md-list ng-cloak>
                     <strong>Khảo sát hàm số: </strong>
@@ -152,8 +152,8 @@
                 </md-list>
             </md-content>
             <h4 colspan="3" style="color: #373737;">Đồ thị của hàm số</h4>
-            <md-divider></md-divider>
-            <div style="overflow: auto; margin-top: 10px;">
+            <md-divider ng-show="computed"></md-divider>
+            <div style="overflow: auto; margin-top: 10px;" ng-show="computed">
                 <div id="plot"></div>
             </div>
         </md-content>

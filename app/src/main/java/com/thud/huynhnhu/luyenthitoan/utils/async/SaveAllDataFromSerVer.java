@@ -33,7 +33,7 @@ import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 import java.util.ArrayList;
 
 /**
- * Created by conheo on 12/05/2016.
+ * Created by Nhu Le on 12/05/2016.
  */
 public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<String>> implements ActivityInterface {
     private AlertDialog alertDialog;

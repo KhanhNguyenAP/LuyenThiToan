@@ -32,7 +32,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/header"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="0dp"/>
 
     <include layout="@layout/content_show_detail" />
 </android.support.design.widget.CoordinatorLayout>

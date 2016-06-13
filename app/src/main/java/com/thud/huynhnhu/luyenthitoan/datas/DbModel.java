@@ -10,7 +10,7 @@ import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
 
 /**
- * Created by nhu
+ * Created by NhuLe
  */
 public class DbModel {
     public static ContentValues getContentValueContent(Content content){

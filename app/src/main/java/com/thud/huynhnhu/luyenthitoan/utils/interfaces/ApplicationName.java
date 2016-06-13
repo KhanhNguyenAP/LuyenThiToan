@@ -7,7 +7,7 @@ import com.parse.ParseACL;
 import com.parse.ParseUser;
 
 /**
- * Created by conheo on 12/05/2016.
+ * Created by Nhu Le on 12/05/2016.
  */
 public class ApplicationName extends Application {
     @Override
