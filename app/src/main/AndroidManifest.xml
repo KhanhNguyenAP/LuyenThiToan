@@ -68,5 +68,10 @@
             android:name=".activities.ShowInfoAppActivity"
             android:label="@string/thongtinungdung"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.ShowListBaiHocActivity"
+            android:label="@string/tab_listbaihoc"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

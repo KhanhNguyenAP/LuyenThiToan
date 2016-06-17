@@ -14,14 +14,16 @@ public class Topic {
     public static final String ISALGEBRA = "isAlgebra";
     public static final String REFERENCESQUESTION = "referencesQuestion";
     public static final String IMAGE = "image";
+    public static final String CHAPTERID = "chapterId";
 
-    public Topic(String id, String name, int isBasic, int isAlgebra, String referencesQuestion, ParseFile image){
+    public Topic(String id, String name, int isBasic, int isAlgebra, String referencesQuestion, ParseFile image, String chapterId){
         this.id = id;
         this.name = name;
         this.isBasic = isBasic;
         this.isAlgebra = isAlgebra;
         this.referencesQuestion = referencesQuestion;
         this.image = image;
+        this.chapterId = chapterId;
     }
 
     public Topic(){
@@ -44,6 +46,9 @@ public class Topic {
 
     @SerializedName("image")
     private ParseFile image;
+
+    @SerializedName("chapterId")
+    private String chapterId;
 
     private String img;
 
@@ -101,5 +106,13 @@ public class Topic {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(String chapterId) {
+        this.chapterId = chapterId;
     }
 }

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.thud.huynhnhu.luyenthitoan.model.Chapter;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
@@ -36,6 +37,12 @@ public class DBHelper extends SQLiteOpenHelper {
             Exam.QUESTION + " TEXT, " +
             Exam.ANSWER + " TEXT )";
 
+    public static final String sql_chapter = "CREATE TABLE IF NOT EXISTS " + Chapter.TABLENAME + "(" +
+            Chapter.ID + " TEXT PRIMARY KEY, " +
+            Chapter.NAME + " TEXT, " +
+            Chapter.ISBASIC + " INTEGER, " +
+            Chapter.ISALGEBRA + " INTEGER )";
+
     public static final String sql_example = "CREATE TABLE IF NOT EXISTS " + Example.TABLENAME + "(" +
             Example.ID + " TEXT PRIMARY KEY, " +
             Example.TOPICID + " TEXT, " +
@@ -49,6 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Topic.ISBASIC + " INTEGER, " +
             Topic.ISALGEBRA + " INTEGER, " +
             Topic.REFERENCESQUESTION + " TEXT, " +
+            Topic.CHAPTERID + " TEXT, " +
             Topic.IMAGE + " TEXT )";
 
     public static final String sql_exam_content = "CREATE TABLE IF NOT EXISTS " + ExamContent.TABLENAME + "(" +
@@ -78,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(sql_topic);
             db.execSQL(sql_content);
             db.execSQL(sql_exam_content);
+            db.execSQL(sql_chapter);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -94,6 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Example.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Topic.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + ExamContent.TABLENAME);
+            db.execSQL("DROP TABLE IF EXISTS " + Chapter.TABLENAME);
             onCreate(db);
         }
         catch (Exception e){
@@ -112,6 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Example.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + Topic.TABLENAME);
             db.execSQL("DROP TABLE IF EXISTS " + ExamContent.TABLENAME);
+            db.execSQL("DROP TABLE IF EXISTS " + Chapter.TABLENAME);
             onCreate(db);
         }
         catch (Exception e){

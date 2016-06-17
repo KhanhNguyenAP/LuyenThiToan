@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
+import com.thud.huynhnhu.luyenthitoan.activities.ShowDetailLuyenThiActivity;
 import com.thud.huynhnhu.luyenthitoan.activities.ShowListBaiHocActivity;
 import com.thud.huynhnhu.luyenthitoan.adapter.ChapterAdapter;
 import com.thud.huynhnhu.luyenthitoan.datas.ChapterDAL;
@@ -22,7 +23,7 @@ import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
-public class FragmentLuyenThiDaiSo extends Fragment {
+public class FragmentKienThucDaiSo extends Fragment{
     private ListView lv_list_luyenthi;
     public static ChapterAdapter chapter_Adapter;
     private Context context;
@@ -62,7 +63,7 @@ public class FragmentLuyenThiDaiSo extends Fragment {
 
         @Override
         protected Result<ArrayList<Chapter>> doInBackground(String... strings){
-            return new ChapterDAL(context).getAllChapterFromLocalIsAlgebra(1, 1);
+            return new ChapterDAL(context).getAllChapterFromLocalIsAlgebra(0, 1);
         }
 
         @Override
@@ -84,7 +85,6 @@ public class FragmentLuyenThiDaiSo extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Flags.chapterId = arr_Chapter.get(position).getId();
-                Flags.chosen_luyenthi =  1;
 
                 Intent intent = new Intent(context, ShowListBaiHocActivity.class);
                 startActivity(intent);

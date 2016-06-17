@@ -52,7 +52,8 @@ public class TopicDAL {
                                 ob.getInt(""+Topic.ISBASIC),
                                 ob.getInt(""+Topic.ISALGEBRA),
                                 ob.getString(""+Topic.REFERENCESQUESTION),
-                                ob.getParseFile(""+Topic.IMAGE));
+                                ob.getParseFile(""+Topic.IMAGE),
+                                ob.getString("" +Topic.CHAPTERID));
                         arr_Topic.add(topic);
                     }
 
@@ -95,13 +96,12 @@ public class TopicDAL {
         return new Result<String>(ResultStatus.FALSE, null);
     }
 
-    public Result<ArrayList<Topic>> getAllTopicFromLocalIsAlgebra(int isBasic, int isAlgebra){
+    public Result<ArrayList<Topic>> getAllTopicFromLocal(String chapterId){
         database = dbHelper.getReadableDatabase();
         ArrayList<Topic> topics = new ArrayList<>();
         try {
             String query_topic = "SELECT * FROM " + Topic.TABLENAME + " WHERE "
-                                    + Topic.ISBASIC + " = " +isBasic + " AND "
-                                    + Topic.ISALGEBRA + " = " +isAlgebra;
+                                    + Topic.CHAPTERID + " = '" +chapterId + "'";
             Cursor cursor = database.rawQuery(query_topic, null);
             if(cursor != null && cursor.moveToFirst()){
                 do{

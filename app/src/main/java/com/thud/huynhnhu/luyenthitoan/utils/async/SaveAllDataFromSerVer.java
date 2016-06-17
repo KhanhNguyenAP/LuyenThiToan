@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.activities.MainActivity;
+import com.thud.huynhnhu.luyenthitoan.datas.ChapterDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ContentDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamContentDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.AllDAL;
+import com.thud.huynhnhu.luyenthitoan.model.Chapter;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
@@ -77,6 +79,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
             getExample();
             publishProgress(3);
             getContent();
+            getChapter();
             publishProgress(4);
 
             return new Result<String>(ResultStatus.TRUE, null, context.getResources().getString(R.string.msg_data_has_been_saved));
@@ -191,6 +194,18 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getExamContent(){
         try {
             Result<ArrayList<ExamContent>> resultExamContent = new ExamContentDAL(context).getAllExamContent();
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get Chapter
+    private boolean getChapter(){
+        try {
+            Result<String> resultChapter= new ChapterDAL(context).getAllChapter();
             return true;
         }
         catch (Exception e){

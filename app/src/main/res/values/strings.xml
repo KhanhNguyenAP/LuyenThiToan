@@ -9,6 +9,7 @@
     <string name="tab_vidu">Ví dụ</string>
     <string name="tab_phuongphapgiai">Phương pháp giải</string>
     <string name="tab_baitapmau">Bài tập mẫu</string>
+    <string name="tab_listbaihoc">Danh sác bài học</string>
 
     <!--Left menu-->
     <string name="trangchu">Trang chủ</string>

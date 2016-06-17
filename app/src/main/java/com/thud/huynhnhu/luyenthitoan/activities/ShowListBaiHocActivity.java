@@ -1,77 +1,73 @@
 package com.thud.huynhnhu.luyenthitoan.activities;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.thud.huynhnhu.luyenthitoan.R;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiDaiSo;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiGiaiTich;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiHinhHoc;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentBaiHoc;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDeThi;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
+import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class LuyenThiActivity extends BaseActivity
+public class ShowListBaiHocActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, ActivityInterface {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private LayoutInflater mlayoutInflater;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    ActionBar actionBar;
+    FragmentManager fragmentManager = this.getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_luyenthi);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_luyenthi);
+        setContentView(R.layout.activity_dethi);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_dethi_main);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_luyenthi);
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_dethi_main);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_dethi);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(2).setChecked(true);
+        navigationView.getMenu().getItem(3).setChecked(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_luyenthi);
-        setupViewPager(viewPager);
-
-        initFlags();
-
-        initControl();
-
-        tabLayout.setupWithViewPager(viewPager);
-        setEventForControl();
+        FragmentBaiHoc fragBaiHoc = (FragmentBaiHoc) getFragmentManager().findFragmentById(R.id.fra_dethi);
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragBaiHoc = new FragmentBaiHoc();
+        fragmentTransaction.replace(R.id.fra_dethi, fragBaiHoc, "Bai Hoc");
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        Intent intent = new Intent(ShowListBaiHocActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override
@@ -98,23 +94,23 @@ public class LuyenThiActivity extends BaseActivity
         Intent intent = null;
 
         if (id == R.id.left_trangchu) {
-            intent = new Intent(LuyenThiActivity.this, HomeActivity.class);
+            intent = new Intent(ShowListBaiHocActivity.this, HomeActivity.class);
 
         } else if (id == R.id.left_kienthuccanban) {
-            intent = new Intent(LuyenThiActivity.this, MainActivity.class);
+            intent = new Intent(ShowListBaiHocActivity.this, MainActivity.class);
 
         } else if (id == R.id.left_luyenthi) {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
-            drawer.closeDrawer(GravityCompat.START);
+            intent = new Intent(ShowListBaiHocActivity.this, LuyenThiActivity.class);
 
         } else if (id == R.id.left_dethimau) {
-            intent = new Intent(LuyenThiActivity.this, DeThiActivity.class);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi_main);
+            drawer.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.left_maytinh) {
-            intent = new Intent(LuyenThiActivity.this, CalculatorActivity.class);
+            intent = new Intent(ShowListBaiHocActivity.this, CalculatorActivity.class);
 
         } else if (id == R.id.left_thongtinungdung) {
-            intent = new Intent(LuyenThiActivity.this, ShowInfoAppActivity.class);
+            intent = new Intent(ShowListBaiHocActivity.this, ShowInfoAppActivity.class);
 
         } else if (id == R.id.left_thoat){
             showDialog();
@@ -122,7 +118,7 @@ public class LuyenThiActivity extends BaseActivity
 
         if (id == R.id.left_taiungdung){
             if (inInternetOn() == true){
-                intent = new Intent(LuyenThiActivity.this, SplashActivity.class);
+                intent = new Intent(ShowListBaiHocActivity.this, SplashActivity.class);
             }
         }
 
@@ -130,7 +126,7 @@ public class LuyenThiActivity extends BaseActivity
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_luyenthi);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_dethi_main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -141,18 +137,14 @@ public class LuyenThiActivity extends BaseActivity
 
     @Override
     public void initControl() {
-        tabLayout = (TabLayout) findViewById(R.id.tabs_luyenthi);
-        mlayoutInflater = LayoutInflater.from(LuyenThiActivity.this);
     }
 
     @Override
     public void setEventForControl() {
-
     }
 
     @Override
     public void getData(String... params) {
-
     }
 
     @Override
@@ -160,43 +152,6 @@ public class LuyenThiActivity extends BaseActivity
 
     }
 
-    //Set up View Pager and TabLayout
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentLuyenThiDaiSo(), getResources().getString(R.string.tab_daiso));
-        adapter.addFragment(new FragmentLuyenThiGiaiTich(), getResources().getString(R.string.tab_giaitich));
-        adapter.addFragment(new FragmentLuyenThiHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
 
     private void showDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -244,4 +199,5 @@ public class LuyenThiActivity extends BaseActivity
         }
         return false;
     }
+
 }

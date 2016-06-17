@@ -13,21 +13,22 @@ import android.widget.ListView;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.activities.ShowDetailLuyenThiActivity;
-import com.thud.huynhnhu.luyenthitoan.adapter.TopicAdapter;
-import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
+import com.thud.huynhnhu.luyenthitoan.activities.ShowListBaiHocActivity;
+import com.thud.huynhnhu.luyenthitoan.adapter.ChapterAdapter;
+import com.thud.huynhnhu.luyenthitoan.datas.ChapterDAL;
+import com.thud.huynhnhu.luyenthitoan.model.Chapter;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
-import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
 public class FragmentLuyenThiGiaiTich extends Fragment {
     private ListView lv_list_luyenthi;
-    public static TopicAdapter topic_Adapter;
+    public static ChapterAdapter chapter_Adapter;
     private Context context;
 
-    public static ArrayList<Topic> arr_Topic = new ArrayList<Topic>();
+    public static ArrayList<Chapter> arr_Chapter = new ArrayList<Chapter>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,42 +37,44 @@ public class FragmentLuyenThiGiaiTich extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.item_list_view, container, false);
         lv_list_luyenthi = (ListView) view.findViewById(R.id.lv_daiso);
 
+        setEvent();
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        new apiGetTopic().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
+        new apiGetChapter().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         setEvent();
     }
 
-    private class apiGetTopic extends AsyncTask<String, Void, Result<ArrayList<Topic>>>{
+    private class apiGetChapter extends AsyncTask<String, Void, Result<ArrayList<Chapter>>>{
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
         }
 
         @Override
-        protected Result<ArrayList<Topic>> doInBackground(String... strings){
-            return new TopicDAL(context).getAllTopicFromLocalIsAlgebra(1, 0);
+        protected Result<ArrayList<Chapter>> doInBackground(String... strings){
+            return new ChapterDAL(context).getAllChapterFromLocalIsAlgebra(1, 2);
         }
 
         @Override
-        protected void onPostExecute(Result<ArrayList<Topic>> arrayListResult){
+        protected void onPostExecute(Result<ArrayList<Chapter>> arrayListResult){
             super.onPostExecute(arrayListResult);
             if (arrayListResult.getKey() == ResultStatus.TRUE){
-                arr_Topic = arrayListResult.getValue();
+                arr_Chapter = arrayListResult.getValue();
 
-                if (arr_Topic != null){
-                    topic_Adapter = new TopicAdapter(context, arr_Topic);
-                    lv_list_luyenthi.setAdapter(topic_Adapter);
+                if (arr_Chapter != null){
+                    chapter_Adapter = new ChapterAdapter(context, arr_Chapter);
+                    lv_list_luyenthi.setAdapter(chapter_Adapter);
                 }
             }
         }
@@ -81,11 +84,13 @@ public class FragmentLuyenThiGiaiTich extends Fragment {
         lv_list_luyenthi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Flags.chosen_ma_kienthuc = arr_Topic.get(position).getId();
+                Flags.chapterId = arr_Chapter.get(position).getId();
+                Flags.chosen_luyenthi =  1;
 
-                Intent intent = new Intent(context, ShowDetailLuyenThiActivity.class);
+                Intent intent = new Intent(context, ShowListBaiHocActivity.class);
                 startActivity(intent);
             }
         });
     }
+
 }

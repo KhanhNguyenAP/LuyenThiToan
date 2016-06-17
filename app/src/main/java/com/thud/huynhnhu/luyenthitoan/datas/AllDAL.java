@@ -9,6 +9,7 @@ import com.thud.huynhnhu.luyenthitoan.datas.DBHelper;
 import com.thud.huynhnhu.luyenthitoan.datas.ExamDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.ExampleDAL;
 import com.thud.huynhnhu.luyenthitoan.datas.TopicDAL;
+import com.thud.huynhnhu.luyenthitoan.model.Chapter;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
@@ -65,8 +66,14 @@ public class AllDAL {
                                 result = new ExamContentDAL(context).insertExamContentFromLocal(examContents);
                             }
                             else {
-                                ArrayList<Topic> topics = (ArrayList) object[0];
-                                result = new TopicDAL(context).insertTopicFromLocal(topics);
+                                if (firstObject != null && firstObject instanceof Topic){
+                                    ArrayList<Topic> topics = (ArrayList) object[0];
+                                    result = new TopicDAL(context).insertTopicFromLocal(topics);
+                                }
+                                else {
+                                    ArrayList<Chapter> chapters = (ArrayList) object[0];
+                                    result = new ChapterDAL(context).insertChapterFromLocal(chapters);
+                                }//end Topic
                             }//end Example
                         }//end ExamContent
                     }//end Exam

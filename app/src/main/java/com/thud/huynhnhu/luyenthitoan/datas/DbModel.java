@@ -3,11 +3,14 @@ package com.thud.huynhnhu.luyenthitoan.datas;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.thud.huynhnhu.luyenthitoan.model.Chapter;
 import com.thud.huynhnhu.luyenthitoan.model.Content;
 import com.thud.huynhnhu.luyenthitoan.model.Exam;
 import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
 import com.thud.huynhnhu.luyenthitoan.model.Example;
 import com.thud.huynhnhu.luyenthitoan.model.Topic;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by NhuLe
@@ -93,6 +96,7 @@ public class DbModel {
         topicDb.put(Topic.ISBASIC, topic.getIsBasic());
         topicDb.put(Topic.NAME, topic.getName());
         topicDb.put(Topic.REFERENCESQUESTION, topic.getReferencesQuestion());
+        topicDb.put(Topic.CHAPTERID, topic.getChapterId());
 
         return topicDb;
     }
@@ -105,6 +109,7 @@ public class DbModel {
         topic.setIsAlgebra(cursor.getInt(cursor.getColumnIndex(Topic.ISALGEBRA)));
         topic.setImg(cursor.getString(cursor.getColumnIndex(Topic.IMAGE)));
         topic.setReferencesQuestion(cursor.getString(cursor.getColumnIndex(Topic.REFERENCESQUESTION)));
+        topic.setChapterId(cursor.getString(cursor.getColumnIndex(Topic.CHAPTERID)));
 
         return topic;
     }
@@ -129,5 +134,26 @@ public class DbModel {
         examContent.setImg(cursor.getString(cursor.getColumnIndex(ExamContent.IMAGE)));
 
         return examContent;
+    }
+
+    /*----------------Chapter----------------*/
+    public static ContentValues getChapterValueContent(Chapter chapter){
+        ContentValues chapterDb = new ContentValues();
+        chapterDb.put(Chapter.ID, chapter.getId());
+        chapterDb.put(Chapter.NAME, chapter.getName());
+        chapterDb.put(Chapter.ISBASIC, chapter.getIsBasic());
+        chapterDb.put(Chapter.ISALGEBRA, chapter.getIsAlgebra());
+
+        return chapterDb;
+    }
+
+    public static Chapter getChapter (Cursor cursor){
+        Chapter chapter = new Chapter();
+        chapter.setId(cursor.getString(cursor.getColumnIndex(Chapter.ID)));
+        chapter.setName(cursor.getString(cursor.getColumnIndex(Chapter.NAME)));
+        chapter.setIsBasic(cursor.getInt(cursor.getColumnIndex(Chapter.ISBASIC)));
+        chapter.setIsAlgebra(cursor.getInt(cursor.getColumnIndex(Chapter.ISALGEBRA)));
+
+        return chapter;
     }
 }

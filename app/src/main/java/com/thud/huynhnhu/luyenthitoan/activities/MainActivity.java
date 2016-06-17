@@ -21,8 +21,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.thud.huynhnhu.luyenthitoan.R;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentDaiSo;
-import com.thud.huynhnhu.luyenthitoan.fragment.FragmentHinhHoc;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentKienThucDaiSo;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentKienThucGiaiTich;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentKienThucHinhHoc;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
@@ -156,8 +157,9 @@ public class MainActivity extends BaseActivity
     //Set up View Pager and TabLayout
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentDaiSo(), getResources().getString(R.string.tab_daiso));
-        adapter.addFragment(new FragmentHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
+        adapter.addFragment(new FragmentKienThucDaiSo(), getResources().getString(R.string.tab_daiso));
+        adapter.addFragment(new FragmentKienThucGiaiTich(), getResources().getString(R.string.tab_giaitich));
+        adapter.addFragment(new FragmentKienThucHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
         viewPager.setAdapter(adapter);
     }
 
