@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiDaiSo;
+import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiGiaiTich;
 import com.thud.huynhnhu.luyenthitoan.fragment.FragmentLuyenThiHinhHoc;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
@@ -164,6 +165,7 @@ public class LuyenThiActivity extends BaseActivity
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentLuyenThiDaiSo(), getResources().getString(R.string.tab_daiso));
         adapter.addFragment(new FragmentLuyenThiHinhHoc(), getResources().getString(R.string.tab_hinhhoc));
+        adapter.addFragment(new FragmentLuyenThiGiaiTich(), getResources().getString(R.string.tab_giaitich));
         viewPager.setAdapter(adapter);
     }
 
