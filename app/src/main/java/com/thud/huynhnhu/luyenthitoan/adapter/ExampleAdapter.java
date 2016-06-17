@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import io.github.kexanie.library.MathView;
 
 /**
- * Created by khanh on 5/24/2016.
+ * Created by NhuLe on 5/24/2016.
  */
 public class ExampleAdapter extends ArrayAdapter<Example> {
     private Context context;

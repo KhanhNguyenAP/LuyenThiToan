@@ -42,7 +42,7 @@ public class CalculatorActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_calculator);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().getItem(4).setChecked(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager_calculator);
 
@@ -51,11 +51,6 @@ public class CalculatorActivity extends BaseActivity
         initControl();
 
         setEventForControl();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     @Override

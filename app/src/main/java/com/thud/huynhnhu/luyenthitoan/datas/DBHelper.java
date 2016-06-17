@@ -13,7 +13,7 @@ import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
 
 /**
- * Created by conheo on 12/05/2016.
+ * Created by NhuLe on 12/05/2016.
  */
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "luyenthitoan.db";

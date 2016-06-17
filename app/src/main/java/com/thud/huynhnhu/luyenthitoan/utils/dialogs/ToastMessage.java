@@ -11,7 +11,7 @@ import com.thud.huynhnhu.luyenthitoan.R;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Def;
 
 /**
- * Created by conheo on 12/05/2016.
+ * Created by Nhu Le on 12/05/2016.
  */
 public class ToastMessage {
     private Context context;

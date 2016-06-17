@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import io.github.kexanie.library.MathView;
 
 /**
- * Created by NhuNhu on 5/29/2016.
+ * Created by NhuLe on 5/29/2016.
  */
 public class FragmentShowQuestionAnswer extends Fragment implements ActivityInterface {
     private Context context;

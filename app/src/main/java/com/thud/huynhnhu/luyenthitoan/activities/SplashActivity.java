@@ -20,8 +20,8 @@ import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 import java.util.ArrayList;
 
 /**
- * Created by KhanhNguyen on 5/11/2016.
- * Contact phone: 0975 282 877
+ * Created by NhuLe on 5/11/2016.
+ *
  */
 public class SplashActivity extends Activity{
     private Preference preference;

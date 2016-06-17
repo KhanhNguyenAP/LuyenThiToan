@@ -13,7 +13,7 @@ import com.thud.huynhnhu.luyenthitoan.model.Topic;
 import java.util.ArrayList;
 
 /**
- * Created by nhu on 5/19/2016.
+ * Created by NhuLe on 5/19/2016.
  */
 public class TopicAdapter extends ArrayAdapter<Topic> {
     private Context context;

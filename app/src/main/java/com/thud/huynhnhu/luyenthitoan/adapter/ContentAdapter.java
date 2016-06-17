@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import io.github.kexanie.library.MathView;
 
 /**
- * Created by KhanhNguyen on 5/19/2016.
+ * Created by NhuLe on 5/19/2016.
  */
 public class ContentAdapter extends ArrayAdapter<Content> {
     private Context context;
