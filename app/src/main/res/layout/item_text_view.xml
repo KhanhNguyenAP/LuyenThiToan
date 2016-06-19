@@ -4,17 +4,19 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/layout_padding_65"
-    android:paddingTop="@dimen/layout_padding_5"
-    android:background="@color/md_white"
+    android:layout_height="@dimen/layout_padding_72"
+    android:paddingBottom="10dp"
+    android:paddingTop="5dp"
+    android:background="@drawable/shadow"
     android:focusable="false">
 
     <TextView
         android:id="@+id/text_view_title_default"
+        android:textColor="#176101"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginLeft="@dimen/layout_padding_5"
+        android:layout_marginLeft="@dimen/layout_padding_24"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:textSize="@dimen/title_size_20"/>
