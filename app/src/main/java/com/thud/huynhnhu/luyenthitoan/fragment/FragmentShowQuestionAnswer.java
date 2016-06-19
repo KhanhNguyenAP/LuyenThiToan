@@ -36,8 +36,7 @@ public class FragmentShowQuestionAnswer extends Fragment implements ActivityInte
     private TextView  text_view_title_cauhoi;
     private MathView mathview_noidung_cauhoi, mathview_noidung_dapan;
     private Button btn_back, btn_next, btn_close;
-
-    private int vitri_cauhoi = 0;
+    private int vitri_dapan =0;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -113,9 +112,10 @@ public class FragmentShowQuestionAnswer extends Fragment implements ActivityInte
 
     @Override
     public void setData() {
-        text_view_title_cauhoi.setText("Câu " + Flags.vitri_cauhoi + " : ");
-        mathview_noidung_cauhoi.setText(arr_ExampleContent.get(vitri_cauhoi).getQuestion());
-        mathview_noidung_dapan.setText(arr_ExampleContent.get(vitri_cauhoi).getAnwser());
+        int vt = vitri_dapan+ 1;
+        text_view_title_cauhoi.setText("Câu " + vt + " : ");
+        mathview_noidung_cauhoi.setText(arr_ExampleContent.get(vitri_dapan).getQuestion());
+        mathview_noidung_dapan.setText(arr_ExampleContent.get(vitri_dapan).getAnwser());
 
         setValue();
     }
@@ -137,6 +137,7 @@ public class FragmentShowQuestionAnswer extends Fragment implements ActivityInte
             super.onPostExecute(arrayListResult);
             if (arrayListResult.getKey() == ResultStatus.TRUE){
                 arr_ExampleContent = arrayListResult.getValue();
+                vitri_dapan = 0;
 
                 setData();
             }
@@ -149,18 +150,24 @@ public class FragmentShowQuestionAnswer extends Fragment implements ActivityInte
             btn_next.setVisibility(View.GONE);
         }
         else{
-            if (Flags.vitri_cauhoi == 1){
+            if (vitri_dapan == 0) {
+                btn_back.setVisibility(View.GONE);
+
+                btn_next.setVisibility(View.VISIBLE);
+            }
+
+            if (vitri_dapan == 1){
                 btn_next.setVisibility(View.VISIBLE);
 
                 btn_back.setVisibility(View.GONE);
             }
 
-            if (Flags.vitri_cauhoi > 1 && Flags.vitri_cauhoi < arr_ExampleContent.size()){
+            if (vitri_dapan > 1 && vitri_dapan < arr_ExampleContent.size()){
                 btn_back.setVisibility(View.VISIBLE);
                 btn_next.setVisibility(View.VISIBLE);
             }
 
-            if (Flags.vitri_cauhoi == arr_ExampleContent.size()){
+            if (vitri_dapan == arr_ExampleContent.size() -1){
                 btn_back.setVisibility(View.VISIBLE);
 
                 btn_next.setVisibility(View.GONE);
@@ -169,13 +176,13 @@ public class FragmentShowQuestionAnswer extends Fragment implements ActivityInte
     }
 
     protected void selectedNext(){
-        vitri_cauhoi += 1;
+        vitri_dapan += 1;
 
         setData();
     }
 
     protected void selectedBack(){
-        vitri_cauhoi -= 1;
+        vitri_dapan -= 1;
 
         setData();
     }

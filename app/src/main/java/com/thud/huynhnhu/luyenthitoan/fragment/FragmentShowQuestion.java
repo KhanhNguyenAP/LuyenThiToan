@@ -16,6 +16,7 @@ import com.thud.huynhnhu.luyenthitoan.datas.ExamContentDAL;
 import com.thud.huynhnhu.luyenthitoan.model.ExamContent;
 import com.thud.huynhnhu.luyenthitoan.model.Result;
 import com.thud.huynhnhu.luyenthitoan.model.ResultStatus;
+import com.thud.huynhnhu.luyenthitoan.utils.dialogs.ToastMessage;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.ActivityInterface;
 import com.thud.huynhnhu.luyenthitoan.utils.interfaces.Flags;
 
@@ -123,8 +124,14 @@ public class FragmentShowQuestion extends Fragment implements ActivityInterface 
             super.onPostExecute(arrayListResult);
             if (arrayListResult.getKey() == ResultStatus.TRUE){
                 arr_ExampleContent = arrayListResult.getValue();
-
-                setData();
+                Flags.vitri_cauhoi = 1;
+                if (arr_ExampleContent.size() == 0){
+                    getActivity().onBackPressed();
+                    new ToastMessage(getActivity()).showToast("Đề thi trống !");
+                }
+                else {
+                    setData();
+                }
             }
         }
     }

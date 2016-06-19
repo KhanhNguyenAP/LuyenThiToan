@@ -65,9 +65,16 @@ public class ShowListBaiHocActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ShowListBaiHocActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = null;
+        if (Flags.chosen_luyenthi == 0){
+            intent = new Intent(ShowListBaiHocActivity.this, MainActivity.class);
+        }
+        else {
+            intent = new Intent(ShowListBaiHocActivity.this, LuyenThiActivity.class);
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     @Override

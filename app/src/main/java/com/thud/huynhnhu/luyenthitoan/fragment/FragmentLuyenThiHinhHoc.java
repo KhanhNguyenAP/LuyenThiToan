@@ -87,7 +87,9 @@ public class FragmentLuyenThiHinhHoc extends Fragment {
                 Flags.chosen_luyenthi =  1;
 
                 Intent intent = new Intent(context, ShowListBaiHocActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
     }
