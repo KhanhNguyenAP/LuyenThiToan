@@ -85,9 +85,12 @@ public class FragmentKienThucGiaiTich extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Flags.chapterId = arr_Chapter.get(position).getId();
+                Flags.chosen_luyenthi =  0;
 
                 Intent intent = new Intent(context, ShowListBaiHocActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
     }
